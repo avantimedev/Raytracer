@@ -11,3 +11,15 @@ Color::Color(double red, double green, double blue) {
 	this->green = green;
 	this->blue = blue;
 }
+
+double Color::r() {
+	return red;
+}
+
+double Color::g() {
+	return green;
+}
+
+double Color::b() {
+	return blue;
+}

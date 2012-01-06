@@ -12,6 +12,10 @@ Sphere::Sphere(Material &material, Vector &position, double radius) {
 	this->radius = radius;
 }
 
+Material *Sphere::getMaterial() {
+	return &material;
+}
+
 bool Sphere::intersect(const Ray &r, float &t) {
 
 	double a = r.getDirection() * r.getDirection();
@@ -48,5 +52,4 @@ bool Sphere::intersect(const Ray &r, float &t) {
         t = t0;
         return true;
     }
-
 }

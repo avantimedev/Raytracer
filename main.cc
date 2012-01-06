@@ -5,34 +5,38 @@
 #include "tga.h"
 #include "ray.h"
 #include "point.h"
+#include "light.h"
 
 void raytrace() {
 
 	int sizex = 640;
 	int sizey = 480;	
 	float t = 2000.0;
-
+	float red = 0, green = 0, blue = 0;
+	
 	Vector v(0.0, 0.0, 0.5);
-
+	
 	Color color(1.0, 0.0, 0.0);
 	Material material(color, 0.2);
 	//Vector point(233.0, 290.0, 0.0);
 	//Vector point(407.0, 290.0, 0.0);
 	Vector point(320.0, 140.0, 0.0);
 	Sphere sphere(material, point, 100.0);
-
+	
+	Vector lightpos(0.0, 240.0, -100.0);  
+	Color lightcol(1.0, 1.0, 1.0);
+	Light light(lightpos, lightcol);
 	Image image(640, 480);
 
     for (int y = 0; y < sizey; ++y) 
     for (int x = 0; x < sizex; ++x) {
 
-		//ray viewRay = { {float(x), float(y), -1000.0f}, { 0.0f, 0.0f, 1.0f}};
 		Vector p(double(x), double(y), -1000.0);
 		Ray ray(p, v);
-		//std::cout << ray << std::endl;
-
+		
 		if (sphere.intersect(ray, t)) {
-			image.setColor(x, y, 0xFFFFFF);		
+			Color c(sphere.getMaterial()->getColor()->r(),sphere.getMaterial()->getColor()->g(),sphere.getMaterial()->getColor()->b());
+			image.setColor(x, y, c);
 		}
 	}
 

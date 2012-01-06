@@ -1,11 +1,11 @@
-#include "point.h"
+#include "vector.h"
 #include "color.h"
 
 class Light {
 public:
 	Light();
-	Light(Point &pos, Color &col);
+	Light(Vector &pos, Color &col);
 private:
-	Point pos;
+	Vector pos;
 	Color col;
 };

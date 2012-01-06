@@ -32,10 +32,10 @@ void TGA::output(Image &image) {
     outputfile.put(0);
 
 	for (unsigned int i=0;i<image.getWidth()*image.getHeight();i++) {
-		double c = image.getColor(i);		
-		outputfile.put(static_cast<unsigned char>(std::min(c*255.0,255.0)));
-		outputfile.put(static_cast<unsigned char>(std::min(c*255.0, 255.0)));
-		outputfile.put(static_cast<unsigned char>(std::min(c*255.0, 255.0)));		
+		Color *color = image.getColor(i);		
+		outputfile.put(static_cast<unsigned char>(std::min(color->b()*255.0,255.0)));
+		outputfile.put(static_cast<unsigned char>(std::min(color->g()*255.0, 255.0)));
+		outputfile.put(static_cast<unsigned char>(std::min(color->r()*255.0, 255.0)));		
 	}
 	outputfile.close();
 }

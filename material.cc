@@ -8,3 +8,7 @@ Material::Material(Color &col, double reflection) {
 	this->col = col;
 	this->reflection = reflection;
 }
+
+Color *Material::getColor() {
+	return &col;
+}

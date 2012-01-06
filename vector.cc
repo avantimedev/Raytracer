@@ -30,7 +30,7 @@ double operator*(const Vector &vec1, const Vector &vec2) {
 }
 
 Vector operator*(const Vector  &vec1, const double scalar) {
-	return Vector(vec1.x * scalar, vec1.y * scalar, vec1.z * scalar);
+ 	return Vector(vec1.x * scalar, vec1.y * scalar, vec1.z * scalar);
 }
 
 void Vector::operator+=(const Vector &vec) {

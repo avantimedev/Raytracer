@@ -3,7 +3,7 @@
 Light::Light() {
 }
 
-Light::Light(Point &pos, Color &col) {
+Light::Light(Vector &pos, Color &col) {
 	this->pos = pos;
 	this->col = col;
 }
