@@ -7,6 +7,8 @@
 #include "point.h"
 #include "light.h"
 
+#include <cmath>
+
 void raytrace() {
 
 	int sizex = 640;
@@ -28,15 +30,32 @@ void raytrace() {
 	Light light(lightpos, lightcol);
 	Image image(640, 480);
 
-    for (int y = 0; y < sizey; ++y) 
-    for (int x = 0; x < sizex; ++x) {
+	for (int y = 0; y < sizey; ++y) 
+   	for (int x = 0; x < sizex; ++x) {
 
 		Vector p(double(x), double(y), -1000.0);
 		Ray ray(p, v);
-		
+		float coef = 1.0f;
+        int level = 0;
+
 		if (sphere.intersect(ray, t)) {
-			Color c(sphere.getMaterial()->getColor()->r(),sphere.getMaterial()->getColor()->g(),sphere.getMaterial()->getColor()->b());
-			image.setColor(x, y, c);
+			
+			Vector newStart = ray.getStart() + ray.getDirection() * t;  
+			Vector dist = lightpos - newStart;
+			Vector n = newStart - point;
+			double temp = n * n;
+			if (temp == 0.0) continue;
+			temp = 1.0 / sqrt(temp);
+			n = n * temp;
+			
+			if (n * dist >= 0.0f) {
+				Vector arg = dist * (1/t);
+				Ray lightRay(newStart, arg);
+				
+				float lambert = (lightRay.getDirection() * n) * 3;
+				Color c(lambert * 0.9, lambert* 0.0, lambert * 0.0);
+				image.setColor(x, y, c);
+			}
 		}
 	}
 
