@@ -1,3 +1,6 @@
+#ifndef TGA_H
+#define TGA_H
+
 #include <string>
 #include <fstream>
 #include <iostream>
@@ -12,3 +15,5 @@ public:
 private:
 	std::string filename;
 };
+
+#endif

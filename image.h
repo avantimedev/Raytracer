@@ -3,7 +3,7 @@
 
 #include "color.h"
 
-class Image {
+class Image /* : public Canvas*/{
 public:
 	Image();
 	Image(unsigned int width, unsigned int heigth);
