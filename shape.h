@@ -13,7 +13,7 @@ class Shape {
 public:
 	Shape(const Material &material) : material(material) {}
 	virtual ~Shape();
-	virtual int intersect(Ray &r, float t) = 0;
+	virtual int intersect(Ray &r, float &t) = 0;
 	virtual std::string toString() const;
 
 	friend std::ostream& operator<<(std::ostream& out, const Shape& s);

@@ -18,7 +18,7 @@ std::string Sphere::toString() const {
 	return s.str();
 }
 
-int Sphere::intersect(Ray &r, float t) {
+int Sphere::intersect(Ray &r, float &t) {
 
 	double a = r.getDirection() * r.getDirection();
 	double b = 2 * (r.getDirection() * r.getStart());

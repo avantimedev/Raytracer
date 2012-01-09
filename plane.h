@@ -8,7 +8,7 @@ class Plane: public Shape {
 public:
 	Plane(Material &material) : Shape(material) {}
 	virtual std::string toString() const;
-	virtual int intersect(Ray &r, float t);
+	virtual int intersect(Ray &r, float &t);
 private:
 };
 
