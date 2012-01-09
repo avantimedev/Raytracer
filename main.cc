@@ -92,7 +92,7 @@ void testRender() {
 	Color color2(0.0, 0.1, 0.0);
 	Material material(color, 0.2);
 	Material material2(color2, 0.2);
-	Vector point(320.0, 140.0, 0.0);
+	Vector point(0.0, 0.0, 10.0);
 //	Sphere sphere(material, point, 100.0);
 
 	scene.addShape(new Sphere(material, point, 100.0));

@@ -31,13 +31,13 @@ bool Raytracer::render(Image &image) {
 	
 	std::cout << "** Start rendering..." << std::endl;
 
-	Vector direction(0.0, 0.0, 0.5);
+	Vector direction(0.0, 0.0, 1.0);
 	
 		
 	// Iterate over rays created from camera. No anti-aliasing (later monte carlo)
 	for (int y = 0; y < sizey; ++y) 
 		for (int x = 0; x < sizex; ++x) {	
-			Vector start(double(x), double(y), -1000.0);
+			Vector start(double(x), double(y), 1.0);
 			Ray ray(start, direction);	
 			Color c(0.0,0,0);
 			if(trace(ray, c)) {
