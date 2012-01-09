@@ -1,3 +1,6 @@
+#ifndef MATERIAL_H
+#define MATERIAL_H
+
 #include "color.h"
 
 class Material {
@@ -9,3 +12,5 @@ private:
 	Color col;
 	double reflection;
 };
+
+#endif

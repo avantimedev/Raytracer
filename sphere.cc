@@ -1,22 +1,18 @@
 #include "sphere.h"
-
 #include <cmath>
 
-Sphere::Sphere() {
-	radius = 0;
-}
-
+/*
 Sphere::Sphere(Material &material, Vector &position, double radius) {
 	this->material = material;
 	this->position = position;
 	this->radius = radius;
-}
-
+}*/
+/*
 Material *Sphere::getMaterial() {
 	return &material;
-}
+}*/
 
-bool Sphere::intersect(const Ray &r, float &t) {
+int Sphere::intersect(Ray &r, float t) {
 
 	double a = r.getDirection() * r.getDirection();
 	double b = 2 * (r.getDirection() * r.getStart());

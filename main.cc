@@ -8,7 +8,7 @@
 #include "light.h"
 
 #include <cmath>
-
+/*
 void raytrace() {
 
 	int sizex = 640;
@@ -62,12 +62,12 @@ void raytrace() {
 	TGA tga("hello.tga");
 	tga.output(image);
 }
-
+*/
 int main() 
 {
 	// Build scene
-	Scene scene();
-	raytrace();
+	//Scene scene();
+	//raytrace();
 
 	//Image image(640, 480);
 	//TGA tga("hello.tga");

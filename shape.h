@@ -1,10 +1,17 @@
+#ifndef SHAPE_H
+#define SHAPE_H
+
 #include "ray.h"
 #include "point.h"
+#include "material.h"
 
 class Shape {
 public:
-	Shape();
-	int intersect(Ray &r);
-	int inside(Point &pt);
+	Shape(const Material &material) : material(material) {}
+	virtual ~Shape();
+	virtual int intersect(Ray &r, float t) = 0;
 private:
+	const Material &material;
 };
+
+#endif

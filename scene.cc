@@ -1,11 +1,12 @@
 #include "scene.h"
 
-Scene::Scene() {
-	width = 0;
-	height = 0;
-}
+int Scene::intersect(Ray &ray, float t, const Shape* shape) {
+	// look for intersection between all shapes
+	std::vector<Shape*>::iterator citr;
+	for (citr = shapes.begin(); citr != shapes.end(); ++citr) {
+		std::cout << (*citr) << std::endl;
+		std::cout << ((Shape*)*citr)->intersect(ray, t);
+	}
 
-Scene::Scene(int width, int height) {
-	this->width = width;
-	this->height = height;
+	return 0;
 }
