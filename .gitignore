@@ -1,3 +1,7 @@
 raytracer
 *.o
 *.tga
+Debug/
+todo_raytracer
+.project
+.cproject

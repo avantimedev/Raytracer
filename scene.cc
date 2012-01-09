@@ -6,7 +6,7 @@ int Scene::intersect(Ray &ray, float t, const Shape* shape) {
 	for (citr = shapes.begin(); citr != shapes.end(); ++citr) {
 		//std::cout << (*citr) << std::endl;
 		if ((*citr)->intersect(ray, t)) {
-			std::cout << "Intersect: " << (**citr) << std::endl;
+			//std::cout << "Intersect: " << (**citr) << std::endl;
 			shape = *citr;
 		}
 	}

@@ -7,6 +7,7 @@
 #include "point.h"
 #include "light.h"
 #include "raytracer.h"
+#include "plane.h"
 
 #include <cmath>
 /*
@@ -75,10 +76,11 @@ void testRender() {
 //	Sphere sphere(material, point, 100.0);
 
 	scene.addShape(new Sphere(material, point, 100.0));
-
-	Raytracer raytracer(scene);
-	raytracer.render();
+	scene.addShape(new Plane(material));
 	
+	Raytracer raytracer(scene);
+	// Todo: change to take screen obj, or image, should be both
+	raytracer.render();	
 }
 
 int main() 
