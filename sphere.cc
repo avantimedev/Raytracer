@@ -12,6 +12,12 @@ Material *Sphere::getMaterial() {
 	return &material;
 }*/
 
+std::string Sphere::toString() const {
+	std::stringstream s;
+	s << "Sphere";
+	return s.str();
+}
+
 int Sphere::intersect(Ray &r, float t) {
 
 	double a = r.getDirection() * r.getDirection();

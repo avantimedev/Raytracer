@@ -12,6 +12,7 @@ public:
 		this->position = position;
 		this->radius = radius;
 	}
+	virtual std::string toString() const;
 	virtual int intersect(Ray &r, float t);
 private:
 	Vector position;

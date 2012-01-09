@@ -15,6 +15,8 @@ public:
 	void addShape(Shape *shape);
 	void addLight(Light *light);
 
+	Color& getBackground();
+
 	int intersect(Ray &ray, float t, const Shape* shape);
 
 private:

@@ -6,6 +6,7 @@
 #include "ray.h"
 #include "point.h"
 #include "light.h"
+#include "raytracer.h"
 
 #include <cmath>
 /*
@@ -63,6 +64,23 @@ void raytrace() {
 	tga.output(image);
 }
 */
+
+void testRender() {
+	Color background(0,0,0);
+	Scene scene(background);
+	
+	Color color(1.0, 0.0, 0.0);
+	Material material(color, 0.2);
+	Vector point(320.0, 140.0, 0.0);
+//	Sphere sphere(material, point, 100.0);
+
+	scene.addShape(new Sphere(material, point, 100.0));
+
+	Raytracer raytracer(scene);
+	raytracer.render();
+	
+}
+
 int main() 
 {
 	// Build scene
@@ -72,5 +90,7 @@ int main()
 	//Image image(640, 480);
 	//TGA tga("hello.tga");
 	//tga.output(image);
+
+	testRender();
 }
 
