@@ -1,3 +1,21 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  tga.cc
+ *
+ *    Description:  
+ *
+ *        Version:  1.0
+ *        Created:  01/05/2012 20:49:30
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  Johan Astborg (ja), into@avantimedev.net
+ *        Company:  avantimedev
+ *
+ * =====================================================================================
+ */
+
 #include "tga.h"
 
 TGA::TGA(const std::string &filename) {
@@ -38,4 +56,6 @@ void TGA::output(Image &image) {
 		outputfile.put(static_cast<unsigned char>(std::min(color->r()*255.0, 255.0)));		
 	}
 	outputfile.close();
+	
+	std::cout << "File written to: " << this->filename << std::endl;
 }

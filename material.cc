@@ -1,14 +1,19 @@
-#include "material.h"
+/*
+ * =====================================================================================
+ *
+ *       Filename:  material.cc
+ *
+ *    Description:  
+ *
+ *        Version:  1.0
+ *        Created:  01/05/2012 20:49:30
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  Johan Astborg (ja), into@avantimedev.net
+ *        Company:  avantimedev
+ *
+ * =====================================================================================
+ */
 
-Material::Material() {
-	reflection = 0;
-}
-
-Material::Material(Color &col, double reflection) {
-	this->col = col;
-	this->reflection = reflection;
-}
-
-Color *Material::getColor() {
-	return &col;
-}
+//#include "material.h"

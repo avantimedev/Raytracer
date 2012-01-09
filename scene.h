@@ -1,3 +1,21 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  scene.h
+ *
+ *    Description:  
+ *
+ *        Version:  1.0
+ *        Created:  01/05/2012 20:49:30
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  Johan Astborg (ja), into@avantimedev.net
+ *        Company:  avantimedev
+ *
+ * =====================================================================================
+ */
+
 #ifndef SCENE_H
 #define SCENE_H
 
@@ -17,8 +35,10 @@ public:
 
 	Color& getBackground();
 
-	int intersect(Ray &ray, float t, const Shape* shape);
+	int intersect(Ray &ray, float &t, const Shape* shape);
 
+	std::vector<Light*> &getLights() { return lights; }
+	
 private:
 
 	std::vector<Light*> lights;

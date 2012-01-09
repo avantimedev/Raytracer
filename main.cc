@@ -1,3 +1,21 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  main.cc
+ *
+ *    Description:  
+ *
+ *        Version:  1.0
+ *        Created:  01/05/2012 20:49:30
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  Johan Astborg (ja), into@avantimedev.net
+ *        Company:  avantimedev
+ *
+ * =====================================================================================
+ */
+
 #include "vector.h"
 #include "scene.h"
 #include "sphere.h"
@@ -71,16 +89,21 @@ void testRender() {
 	Scene scene(background);
 	
 	Color color(1.0, 0.0, 0.0);
+	Color color2(0.0, 0.1, 0.0);
 	Material material(color, 0.2);
+	Material material2(color2, 0.2);
 	Vector point(320.0, 140.0, 0.0);
 //	Sphere sphere(material, point, 100.0);
 
 	scene.addShape(new Sphere(material, point, 100.0));
-	scene.addShape(new Plane(material));
-	
+	scene.addShape(new Plane(Vector(0.0, 1.0, 0.0), -1.0, material2));
+	scene.addLight(new AmbientLight(Color(0.2, 0.2, 0.2)));
 	Raytracer raytracer(scene);
 	// Todo: change to take screen obj, or image, should be both
-	raytracer.render();	
+	Image image(800, 600);
+	raytracer.render(image);
+	TGA tga("hello.tga");
+	tga.output(image);
 }
 
 int main() 

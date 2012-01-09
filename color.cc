@@ -1,3 +1,21 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  color.cc
+ *
+ *    Description:  
+ *
+ *        Version:  1.0
+ *        Created:  01/05/2012 20:49:30
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  Johan Astborg (ja), into@avantimedev.net
+ *        Company:  avantimedev
+ *
+ * =====================================================================================
+ */
+
 #include "color.h"
 
 Color::Color() {
@@ -22,4 +40,14 @@ double Color::g() {
 
 double Color::b() {
 	return blue;
+}
+
+void Color::operator+=(const Color &c) {
+	red += c.red;
+	green += c.green;
+	blue += c.blue;	
+}
+
+std::ostream& operator<<(std::ostream& out, const Color& c) {
+	return out << "Color: " << c.red << " " << c.green << " " << c.blue;
 }
