@@ -18,17 +18,17 @@
 
 #include "scene.h"
 
-int Scene::intersect(Ray &ray, float &t, const Shape* shape) {
+int Scene::intersect(Ray &ray, float &t, const Surface* surface) {
 	// look for intersection between all shapes
 	t = 2000;
-	std::vector<Shape*>::iterator citr;
-	for (citr = shapes.begin(); citr != shapes.end(); ++citr) {
+	std::vector<Surface*>::iterator citr;
+	for (citr = surfaces.begin(); citr != surfaces.end(); ++citr) {
 		//std::cout << (*citr) << std::endl;
 		double tt = 0;
 		bool coll = (*citr)->intersect(ray, t);
 		if (coll && tt < t ) {
 			//std::cout << "Intersect: " << (**citr) << std::endl;
-			shape = *citr;
+			surface = *citr;
 			t = tt;
 			return true;
 		}
@@ -37,8 +37,8 @@ int Scene::intersect(Ray &ray, float &t, const Shape* shape) {
 	return 0;
 }
 
-void Scene::addShape(Shape *shape) {
-	shapes.push_back(shape);	
+void Scene::addShape(Surface *surface) {
+	surfaces.push_back(surface);	
 }
 
 void Scene::addLight(Light *light) {

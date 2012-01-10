@@ -31,15 +31,18 @@ bool Raytracer::render(Image &image) {
 	
 	std::cout << "** Start rendering..." << std::endl;
 
-	Vector direction(0.0, 0.0, 1.0);
+	Vector direction(0.0, 0.0, -1.0);
 	
-		
+	// Camera at 0,0,0 look at 0,0,1?
+	
+	std::cout << rand() / double(RAND_MAX) << std::endl;
+	
 	// Iterate over rays created from camera. No anti-aliasing (later monte carlo)
+	Color c((rand() / double(RAND_MAX)), 0.0, 0.0);	
 	for (int y = 0; y < sizey; ++y) 
 		for (int x = 0; x < sizex; ++x) {	
-			Vector start(double(x), double(y), 1.0);
-			Ray ray(start, direction);	
-			Color c(0.0,0,0);
+			Vector start(double(x), double(y), 1.0);			
+			Ray ray(start, direction);						
 			if(trace(ray, c)) {
 				// put color
 				image.setColor(x, y, c);
@@ -55,16 +58,21 @@ bool Raytracer::trace(Ray &ray, Color &c) {
 
 	// Just ambient raytracing for now...
 
-	const Shape *shape;
+	Surface *surface;
 	float t = 2000.0;
-	if (this->scene.intersect(ray, t, shape) == false) {
+	if (this->scene.intersect(ray, t, surface) == false) {
 		return false;
 	}
 	
-	c += *(shape->getMaterial().getColor());
+	// TODO: Fix bug here!!!
+	//const Color *cc = surface->getMaterial()->getColor();
+	//std::cout << cc->r() << std::endl;
+	//std::cout << surface->getColor() << std::endl;
+	//c = Color((rand()%100)/100.0, 0.0, 0.0);
 	
 	// Trace lights
 	// Raytracing works only for point and ambient lights
+	/*
 	std::vector<Light*>::iterator liter;
 	for (liter = scene.getLights().begin(); liter != scene.getLights().end(); ++liter) {
 		// ambient light
@@ -76,9 +84,8 @@ bool Raytracer::trace(Ray &ray, Color &c) {
 		
 		PointLight *P = dynamic_cast<PointLight*>(p);              
 		if (P == NULL)
-			continue;
-		
-	}
+			continue;		
+	}*/
 	
 	return true;
 }

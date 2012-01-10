@@ -19,13 +19,13 @@
 #ifndef PLANE_H
 #define PLANE_H
 
-#include "shape.h"
+#include "surface.h"
 #include "material.h"
 #include "vector.h"
 
-class Plane: public Shape {
+class Plane: public Surface {
 public:
-	Plane(const Vector normal, const double distance, Material &material) : Shape(material), normal(normal), distance(distance) {}
+	Plane(const Vector normal, const double distance, Material &material) : Surface(material), normal(normal), distance(distance) {}
 	virtual std::string toString() const;
 	virtual int intersect(Ray &r, float &t);
 private:

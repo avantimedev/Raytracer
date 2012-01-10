@@ -22,11 +22,11 @@
 #include "material.h"
 #include "point.h"
 #include "ray.h"
-#include "shape.h"
+#include "surface.h"
 
-class Sphere : public Shape {
+class Sphere : public Surface {
 public:
-	Sphere(Material &material, Vector &position, double radius) : Shape(material) {
+	Sphere(Material &material, Vector &position, double radius) : Surface(material) {
 		this->position = position;
 		this->radius = radius;
 	}

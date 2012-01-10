@@ -24,10 +24,11 @@
 class Material {
 public:
 	Material();
-	Material(Color &color, double reflection) : color(color), reflection(reflection) {}
-	const Color *getColor() const { return &color; }
+	Material(const Color &color, double reflection) : color(color), reflection(reflection) {}
+	const Color& getColor() const { return color; }
+	//const Color* getColor() const { return &color; }
 private:
-	const Color color;
+	const Color &color;
 	double reflection;
 };
 

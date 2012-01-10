@@ -7,8 +7,8 @@ all: raytracer
 
 # The following rule means "if ltest is older than ltest.o or list.o,
 # then link ltest".
-raytracer: color.o image.o light.o main.o material.o point.o ray.o scene.o sphere.o vector.o shape.o raytracer.o plane.o tga.o
-	g++ -o raytracer color.o image.o light.o main.o material.o point.o ray.o scene.o sphere.o vector.o shape.o raytracer.o plane.o tga.o
+raytracer: color.o image.o light.o main.o material.o point.o ray.o scene.o sphere.o vector.o surface.o raytracer.o plane.o tga.o
+	g++ -o raytracer color.o image.o light.o main.o material.o point.o ray.o scene.o sphere.o vector.o surface.o raytracer.o plane.o tga.o
 
 # Define the rules for the object files.
 color.o: color.cc color.h
@@ -31,8 +31,8 @@ sphere.o: sphere.cc sphere.h
 	g++ -c $(CXXFLAGS) sphere.cc
 vector.o: vector.cc vector.h
 	g++ -c $(CXXFLAGS) vector.cc
-shape.o: shape.cc shape.h
-	g++ -c $(CXXFLAGS) shape.cc
+surface.o: surface.cc surface.h
+	g++ -c $(CXXFLAGS) surface.cc
 plane.o: plane.cc plane.h
 	g++ -c $(CXXFLAGS) plane.cc
 raytracer.o: raytracer.cc raytracer.h

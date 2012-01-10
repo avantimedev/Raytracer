@@ -24,8 +24,10 @@
 class Color {
 public:
 	Color();
+	Color(const Color &color) : red(color.red), green(color.green), blue(color.blue) {}
 	Color(double red, double green, double blue);
 	
+	double r() const;
 	double r();
 	double g();
 	double b();

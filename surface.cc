@@ -16,18 +16,18 @@
  * =====================================================================================
  */
 
-#include "shape.h"
+#include "surface.h"
 
-Shape::~Shape() {
+Surface::~Surface() {
 }
 
 
-std::string Shape::toString() const {
+std::string Surface::toString() const {
 	std::stringstream s;
-	s << "Shape";
+	s << "Surface";
 	return s.str();
 }
 
-std::ostream& operator<<(std::ostream& out, const Shape& s) {
+std::ostream& operator<<(std::ostream& out, const Surface& s) {
 	return out << s.toString();
 }

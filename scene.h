@@ -23,26 +23,26 @@
 
 #include "material.h"
 #include "light.h"
-#include "shape.h"
+#include "surface.h"
 #include "color.h"
 
 class Scene {
 public:
 	Scene(Color &background) : background(background) {}
 
-	void addShape(Shape *shape);
+	void addShape(Surface *surface);
 	void addLight(Light *light);
 
 	Color& getBackground();
 
-	int intersect(Ray &ray, float &t, const Shape* shape);
+	int intersect(Ray &ray, float &t, const Surface* surface);
 
 	std::vector<Light*> &getLights() { return lights; }
 	
 private:
 
 	std::vector<Light*> lights;
-	std::vector<Shape*> shapes;
+	std::vector<Surface*> surfaces;
 
 	Color background;
 

@@ -92,11 +92,13 @@ void testRender() {
 	Color color2(0.0, 0.1, 0.0);
 	Material material(color, 0.2);
 	Material material2(color2, 0.2);
-	Vector point(0.0, 0.0, 10.0);
+	Vector point(230, 120, 10.0);
+	Vector point2(260, 170, 10.0);
 //	Sphere sphere(material, point, 100.0);
 
 	scene.addShape(new Sphere(material, point, 100.0));
-	scene.addShape(new Plane(Vector(0.0, 1.0, 0.0), -1.0, material2));
+	scene.addShape(new Sphere(material2, point2, 100.0));
+	//scene.addShape(new Plane(Vector(0.0, 1.0, 0.0), -1.0, material2));
 	scene.addLight(new AmbientLight(Color(0.2, 0.2, 0.2)));
 	Raytracer raytracer(scene);
 	// Todo: change to take screen obj, or image, should be both

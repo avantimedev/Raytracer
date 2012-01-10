@@ -34,6 +34,10 @@ double Color::r() {
 	return red;
 }
 
+double Color::r() const {
+	return red;
+}
+
 double Color::g() {
 	return green;
 }
