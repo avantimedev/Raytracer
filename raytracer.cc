@@ -59,16 +59,23 @@ bool Raytracer::trace(Ray &ray, Color &c) {
 	// Just ambient raytracing for now...
 
 	Surface *surface;
-	float t = 2000.0;
-	if (this->scene.intersect(ray, t, surface) == false) {
+	float t = 100.0;
+	if (this->scene.intersect(ray, t, &surface) == false) {
 		return false;
 	}
 	
 	// TODO: Fix bug here!!!
 	//const Color *cc = surface->getMaterial()->getColor();
 	//std::cout << cc->r() << std::endl;
-	//std::cout << surface->getColor() << std::endl;
+	//surface->getColor() << std::endl;
 	//c = Color((rand()%100)/100.0, 0.0, 0.0);
+	
+	if (surface != 0) {
+		//std::cout << surface << std::endl;
+		c = surface->getMaterial().getColor();
+	}
+	
+	//std::cout << surface->getMaterial() << std::endl;
 	
 	// Trace lights
 	// Raytracing works only for point and ambient lights

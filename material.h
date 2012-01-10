@@ -19,6 +19,8 @@
 #ifndef MATERIAL_H
 #define MATERIAL_H
 
+#include <iostream>
+
 #include "color.h"
 
 class Material {
@@ -27,6 +29,7 @@ public:
 	Material(const Color &color, double reflection) : color(color), reflection(reflection) {}
 	const Color& getColor() const { return color; }
 	//const Color* getColor() const { return &color; }
+	friend std::ostream& operator<<(std::ostream& out, const Material& m);
 private:
 	const Color &color;
 	double reflection;

@@ -35,7 +35,7 @@ public:
 
 	Color& getBackground();
 
-	int intersect(Ray &ray, float &t, const Surface* surface);
+	int intersect(Ray &ray, float &t, Surface** surface);
 
 	std::vector<Light*> &getLights() { return lights; }
 	

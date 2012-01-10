@@ -85,20 +85,28 @@ void raytrace() {
 */
 
 void testRender() {
+	
+	// Todo: Fix direct referencing in constructor
+	
 	Color background(0,0,0);
 	Scene scene(background);
 	
 	Color color(1.0, 0.0, 0.0);
-	Color color2(0.0, 0.1, 0.0);
+	Color color2(0.0, 1.0, 0.0);
+	Color color3(0.0, 0.0, 1.0);
 	Material material(color, 0.2);
 	Material material2(color2, 0.2);
-	Vector point(230, 120, 10.0);
-	Vector point2(260, 170, 10.0);
+	Material material3(color3, 0.2);
+	Vector point(300, 120, 12.0);
+	Vector point2(260, 170, 15.0);
 //	Sphere sphere(material, point, 100.0);
 
+	//Sphere *s = new Sphere(color, point, 100.0);
+	//std::cout << s->getColor() << std::endl;
+	
 	scene.addShape(new Sphere(material, point, 100.0));
 	scene.addShape(new Sphere(material2, point2, 100.0));
-	//scene.addShape(new Plane(Vector(0.0, 1.0, 0.0), -1.0, material2));
+	scene.addShape(new Plane(Vector(0.0, 1.0, 0.0), -1.0, material3));
 	scene.addLight(new AmbientLight(Color(0.2, 0.2, 0.2)));
 	Raytracer raytracer(scene);
 	// Todo: change to take screen obj, or image, should be both

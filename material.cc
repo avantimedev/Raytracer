@@ -16,4 +16,8 @@
  * =====================================================================================
  */
 
-//#include "material.h"
+#include "material.h"
+
+std::ostream& operator<<(std::ostream& out, const Material& m) {
+	return out << "Material: ";
+}

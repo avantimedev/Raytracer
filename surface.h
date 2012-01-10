@@ -31,20 +31,21 @@
 
 class Surface {
 public:
-	Surface(const Material& material) : material(material), r((rand() / double(RAND_MAX))) {}
+	Surface(const Material& material) : material(material) {}
+	//Surface(const Color& color) : color(color) {}
 	virtual ~Surface();
 	
 	virtual int intersect(Ray& r, float& t) = 0;
 	//virtual box boundingbox() = 0;
 	virtual std::string toString() const;
-	//const Material& getMaterial() const { return material; }
+	const Material& getMaterial() const { return material; }
 	//const Material* getMaterial() const { return &material; }
-	const Color getColor() { return Color(0.1,0.0,0.0); }
+	//const Color& getColor() const { return color; }
 	
 	friend std::ostream& operator<<(std::ostream& out, const Surface& s);
 private:	
-	const double r;
 	const Material& material;
+	//const Color& color;
 };
 
 #endif
