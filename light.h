@@ -33,7 +33,7 @@ private:
 
 class PointLight : public Light {
 public:
-	PointLight(const Color &color) : Light(color) {}
+	PointLight(const Color &color, const Vector& pos) : Light(color), pos(pos) {}
 	Vector &getPosition() { return pos; }
 private:
 	Vector pos;

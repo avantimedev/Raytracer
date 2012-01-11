@@ -33,7 +33,7 @@ public:
 	// dot *
 	// equals
 	// neg
-
+	Vector normalize();
 	// double x()
 	// double y()
 	// double z()
@@ -53,6 +53,7 @@ private:
 	friend Vector operator-(const Vector &vec1, const Vector &vec2);
 	friend double operator*(const Vector &vec1, const Vector &vec2);
 	friend Vector operator*(const Vector &vec1, const double scalar);
+	friend Vector operator*(const double scalar, const Vector &vec1);
 	//friend Vector operator/(const Vector &vec1, const double scalar);
 	//friend bool operator==(const Vector &vec1) const;
 	//friend bool operator!=(const Vector &vec1) const;

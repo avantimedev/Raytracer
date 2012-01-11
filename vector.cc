@@ -18,6 +18,8 @@
 
 #include "vector.h"
 
+#include <cmath>
+
 Vector::Vector() {
 	x = 0;
 	y = 0;
@@ -28,6 +30,14 @@ Vector::Vector(double x, double y, double z) {
 	this->x = x;
 	this->y = y;
 	this->z = z;
+}
+
+Vector Vector::normalize() {
+	double length = sqrt((x * x) + (y * y) + (z * z));
+	double nx = x/length;
+	double ny = y/length;
+	double nz = z/length;
+	return Vector(nx, ny, nz);
 }
 
 std::ostream& operator<<(std::ostream& out, const Vector& v) {
@@ -48,6 +58,10 @@ double operator*(const Vector &vec1, const Vector &vec2) {
 }
 
 Vector operator*(const Vector  &vec1, const double scalar) {
+ 	return Vector(vec1.x * scalar, vec1.y * scalar, vec1.z * scalar);
+}
+
+Vector operator*(const double scalar, const Vector  &vec1) {
  	return Vector(vec1.x * scalar, vec1.y * scalar, vec1.z * scalar);
 }
 

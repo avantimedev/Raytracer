@@ -97,8 +97,9 @@ void testRender() {
 	Material material(color, 0.2);
 	Material material2(color2, 0.2);
 	Material material3(color3, 0.2);
-	Vector point(300, 120, 12.0);
-	Vector point2(260, 170, 15.0);
+	Vector point(300, 120, 20.0);
+	Vector point2(260, 200, 60.0);
+	Vector point3(150, 420, -200.0);
 //	Sphere sphere(material, point, 100.0);
 
 	//Sphere *s = new Sphere(color, point, 100.0);
@@ -107,7 +108,8 @@ void testRender() {
 	scene.addShape(new Sphere(material, point, 100.0));
 	scene.addShape(new Sphere(material2, point2, 100.0));
 	scene.addShape(new Plane(Vector(0.0, 1.0, 0.0), -1.0, material3));
-	scene.addLight(new AmbientLight(Color(0.2, 0.2, 0.2)));
+	scene.addLight(new AmbientLight(Color(0.1, 0.1, 0.1)));
+	scene.addLight(new PointLight(Color(0.5, 0.5, 0.5), point3));
 	Raytracer raytracer(scene);
 	// Todo: change to take screen obj, or image, should be both
 	Image image(800, 600);

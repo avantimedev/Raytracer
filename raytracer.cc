@@ -18,6 +18,8 @@
 
 #include "raytracer.h"
 
+#include <cmath>
+
 // Todo: get drawable area, image, screen etc (put(x,y, color), height, width
 bool Raytracer::render(Image &image) {
 
@@ -39,12 +41,20 @@ bool Raytracer::render(Image &image) {
 	
 	// Iterate over rays created from camera. No anti-aliasing (later monte carlo)
 	Color c((rand() / double(RAND_MAX)), 0.0, 0.0);	
+	Color c2((rand() / double(RAND_MAX)), 0.0, 0.0);	
 	for (int y = 0; y < sizey; ++y) 
 		for (int x = 0; x < sizex; ++x) {	
 			Vector start(double(x), double(y), 1.0);			
 			Ray ray(start, direction);						
 			if(trace(ray, c)) {
-				// put color
+				// Simple Supersampling (anti aliasing)
+				for (double i=0;i<1.0;i+=0.25) {
+					Vector start(double(x)+i, double(y)+i, 1.0);			
+					Ray ray(start, direction);
+					trace(ray, c2);
+					c += c2;
+					c /= 2.0;
+				}
 				image.setColor(x, y, c);
 			} else {
 				// put background color
@@ -64,35 +74,54 @@ bool Raytracer::trace(Ray &ray, Color &c) {
 		return false;
 	}
 	
-	// TODO: Fix bug here!!!
-	//const Color *cc = surface->getMaterial()->getColor();
-	//std::cout << cc->r() << std::endl;
-	//surface->getColor() << std::endl;
-	//c = Color((rand()%100)/100.0, 0.0, 0.0);
-	
 	if (surface != 0) {
 		//std::cout << surface << std::endl;
-		c = surface->getMaterial().getColor();
+		//c = surface->getMaterial().getColor();
 	}
+	
+	c = Color(0,0,0);
 	
 	//std::cout << surface->getMaterial() << std::endl;
 	
 	// Trace lights
 	// Raytracing works only for point and ambient lights
-	/*
+	
 	std::vector<Light*>::iterator liter;
 	for (liter = scene.getLights().begin(); liter != scene.getLights().end(); ++liter) {
 		// ambient light
 		Light *p = *liter;
+		
 		AmbientLight *al = dynamic_cast<AmbientLight*>(p);
 		if (al != NULL) {
-			c += al->getColor();
+			c += surface->getMaterial().getColor() * 0.1;
 		}
 		
-		PointLight *P = dynamic_cast<PointLight*>(p);              
-		if (P == NULL)
-			continue;		
-	}*/
+		PointLight *pl = dynamic_cast<PointLight*>(p);              
+		if (pl == NULL)
+			continue;
+			
+		// Calculate light component from point light
+		Vector newStart = (ray.getStart() + ray.getDirection() * t);
+		Vector dist = (pl->getPosition() - newStart).normalize();
+		Vector n = surface->normalAt(newStart);// newStart - surface->getPosition();
+		/*
+		double temp = n * n;
+		if (temp == 0.0) continue;
+		temp = 1.0 / sqrt(temp);
+		n = n * temp;
+		*/
+		if (n * dist >= 0.0f) {
+			Vector arg = (dist * (1/t)).normalize();
+			Ray lightRay(newStart, arg);
+			
+			float lambert = (lightRay.getDirection() * n);
+			//Color c(lambert * 0.9, lambert* 0.0, lambert * 0.0);
+			Color cl = pl->getColor();
+			c += surface->getMaterial().getColor() * lambert;
+			c += cl * lambert;
+			//image.setColor(x, y, c);
+		}	
+	}
 	
 	return true;
 }

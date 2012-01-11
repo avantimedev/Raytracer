@@ -38,6 +38,9 @@ public:
 	virtual int intersect(Ray& r, float& t) = 0;
 	//virtual box boundingbox() = 0;
 	virtual std::string toString() const;
+	
+	virtual Vector normalAt(Vector& point) const = 0;
+	
 	const Material& getMaterial() const { return material; }
 	//const Material* getMaterial() const { return &material; }
 	//const Color& getColor() const { return color; }

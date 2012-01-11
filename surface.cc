@@ -21,7 +21,6 @@
 Surface::~Surface() {
 }
 
-
 std::string Surface::toString() const {
 	std::stringstream s;
 	s << "Surface";

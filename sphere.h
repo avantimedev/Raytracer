@@ -32,6 +32,7 @@ public:
 	}
 	virtual std::string toString() const;
 	virtual int intersect(Ray &r, float &t);
+	virtual Vector normalAt(Vector& point) const;
 private:
 	Vector position;
 	double radius;

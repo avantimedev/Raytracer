@@ -33,6 +33,13 @@ public:
 	double b();
 	
 	void operator+=(const Color &c);
+	void operator/=(const double &d);
+	void operator*=(const double &d);
+	void operator+=(const double &d);
+	void operator-=(const double &d);
+
+	friend Color operator*(const Color &col, const double scalar);
+	friend Color operator*(const double scalar, const Color &col);
 	
 	friend std::ostream& operator<<(std::ostream& out, const Color& c);
 private:

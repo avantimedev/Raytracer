@@ -36,6 +36,10 @@ std::string Sphere::toString() const {
 	return s.str();
 }
 
+Vector Sphere::normalAt(Vector& point) const {
+	return (point - position).normalize();
+}
+
 int Sphere::intersect(Ray &r, float &t) {
 
 	double a = r.getDirection() * r.getDirection();

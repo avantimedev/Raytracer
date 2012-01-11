@@ -24,6 +24,10 @@ std::string Plane::toString() const {
 	return s.str();
 }
 
+Vector Plane::normalAt(Vector& point) const {
+	return normal;
+}
+
 int Plane::intersect(Ray &r, float &t) {
 	
 	// 

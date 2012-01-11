@@ -52,6 +52,38 @@ void Color::operator+=(const Color &c) {
 	blue += c.blue;	
 }
 
+void Color::operator/=(const double &d) {
+	red /= d;
+	green /= d;
+	blue /= d;
+}
+
+void Color::operator*=(const double &d) {
+	red *= d;
+	green *= d;
+	blue *= d;
+}
+
+void Color::operator+=(const double &d) {
+	red += d;
+	green += d;
+	blue += d;
+}
+
+void Color::operator-=(const double &d) {
+	red -= d;
+	green -= d;
+	blue -= d;
+}
+
+Color operator*(const Color &col, const double scalar) {
+	return Color(col.red * scalar, col.green * scalar, col.blue * scalar);
+}
+
+Color operator*(const double scalar, const Color &col) {
+	return Color(col.red * scalar, col.green * scalar, col.blue * scalar);
+}
+
 std::ostream& operator<<(std::ostream& out, const Color& c) {
 	return out << "Color: " << c.red << " " << c.green << " " << c.blue;
 }
