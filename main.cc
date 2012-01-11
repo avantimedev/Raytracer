@@ -30,7 +30,7 @@
 
 #include <cmath>
 
-void testRender() {
+void testRender(const std::string filename) {
 	
 	Color background(0,0,0);
 	Scene scene(background);
@@ -42,10 +42,9 @@ void testRender() {
 	scene.addLight(new PointLight(Color(0.5, 0.5, 0.5), Vector(150, 420, -200.0)));
 	Raytracer raytracer(scene);
 
-	// Todo: change to take screen obj, or image, should be both
 	Image image(800, 600);
 	raytracer.render(image);
-	TGA tga("hello.tga");
+	TGA tga(filename);
 	tga.output(image);
 }
 
@@ -62,15 +61,6 @@ void testmatrix() {
 
 int main() 
 {
-	// Build scene
-	//Scene scene();
-	//raytrace();
-
-	//Image image(640, 480);
-	//TGA tga("hello.tga");
-	//tga.output(image);
-
-	testRender();
-	//testmatrix();
+	testRender("hello.tga");	
 }
 
