@@ -53,10 +53,10 @@ public:
 	}
 
 	friend std::ostream& operator<<(std::ostream &out, const Camera &c);
-private:
-	double fov; // Default 45 degrees
+private:	
 	Vector pos;
 	Vector dir;
+	double fov; // Default 45 degrees
 	Vector top;
 	double tan_x;
 	double tan_y;

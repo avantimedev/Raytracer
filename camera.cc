@@ -19,5 +19,5 @@
 #include "camera.h"
 
 std::ostream& operator<<(std::ostream &out, const Camera &c) {
-	return out << "Camera";
+	return out << "Camera" << c.pos << " " << c.dir;
 }

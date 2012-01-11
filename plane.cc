@@ -24,7 +24,7 @@ std::string Plane::toString() const {
 	return s.str();
 }
 
-Vector Plane::normalAt(Vector& point) const {
+Vector Plane::normalAt(Vector&) const {
 	return normal;
 }
 

@@ -95,9 +95,9 @@ void testRender() {
 	Color color(1.0, 0.0, 0.0);
 	Color color2(0.0, 1.0, 0.0);
 	Color color3(0.0, 0.0, 1.0);
-	Material material(color, 0.2);
-	Material material2(color2, 0.2);
-	Material material3(color3, 0.2);
+	Material material(color, 0.2, 0.1, 0.4, 2);
+	Material material2(color2, 0.2, 0.1, 0.4, 2);
+	Material material3(color3, 0.2, 0.1, 0.4, 2);
 	Vector point(300, 120, 20.0);
 	Vector point2(260, 200, 60.0);
 	Vector point3(150, 420, -200.0);

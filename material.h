@@ -26,13 +26,18 @@
 class Material {
 public:
 	Material();
-	Material(const Color &color, double reflection) : color(color), reflection(reflection) {}
+	Material(const Color &color, double ka, double kd, double ks, double n) : color(color), ka(ka), kd(kd), ks(ks), n(n) {}
 	const Color& getColor() const { return color; }
-	//const Color* getColor() const { return &color; }
+	double aCoeff() { return ka; }
+	double dCoeff() { return kd; }
+	double sCoeff() { return ks; }
 	friend std::ostream& operator<<(std::ostream& out, const Material& m);
 private:
 	const Color &color;
-	double reflection;
+	double ka; // ambient coefficient
+	double kd; // diffuse coefficient (eg ball bearings have low kd)
+	double ks; // specular coefficient (how much light reflects of the surface)
+	double n; // specular parameter
 };
 
 #endif
