@@ -26,7 +26,7 @@
 
 class Sphere : public Surface {
 public:
-	Sphere(Material &material, Vector &position, double radius) : Surface(material) {
+	Sphere(const Material &material, const Vector &position, double radius) : Surface(material) {
 		this->position = position;
 		this->radius = radius;
 	}
