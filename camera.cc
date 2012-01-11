@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  material.cc
+ *       Filename:  camera.cc
  *
  *    Description:  
  *
  *        Version:  1.0
- *        Created:  01/05/2012 20:49:30
+ *        Created:  01/11/2012 18:37:41
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -16,8 +16,8 @@
  * =====================================================================================
  */
 
-#include "material.h"
+#include "camera.h"
 
-std::ostream& operator<<(std::ostream& out, const Material& m) {
-	return out << "Material: " << m.color;
+std::ostream& operator<<(std::ostream &out, const Camera &c) {
+	return out << "Camera";
 }

@@ -30,18 +30,6 @@ Vector Plane::normalAt(Vector& point) const {
 
 int Plane::intersect(Ray &r, float &t) {
 	
-	// 
-	/*
-	 
-	 double tt = normal.dot_product(r.getStart()) + distance) / normal.dot(r.getDirection());
-	 
-	 if (t > 0.001) {
-	 	t = tt;
-	 	return true;
-	 } 
-	  
-	*/
-	
 	double tt = (normal * r.getStart() + distance) / (normal * r.getDirection());
 	
 	if (t > 0.001) {
