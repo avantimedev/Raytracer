@@ -28,7 +28,7 @@ Vector Plane::normalAt(Vector&) const {
 	return normal;
 }
 
-int Plane::intersect(Ray &r, float &t) {
+int Plane::intersect(Ray &r, double &t) {
 	
 	double tt = (normal * r.getStart() + distance) / (normal * r.getDirection());
 	

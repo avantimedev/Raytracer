@@ -21,7 +21,7 @@
 Ray::Ray() {
 }
 
-Ray::Ray(Vector &start, Vector &direction) {
+Ray::Ray(const Vector &start, const Vector &direction) {
 	this->start = start;
 	this->direction = direction;
 }

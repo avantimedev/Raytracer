@@ -18,12 +18,12 @@
 
 #include "scene.h"
 
-int Scene::intersect(Ray &ray, float &t, Surface** surface) {
+int Scene::intersect(Ray &ray, double &t, Surface** surface) {
 	// look for intersection between all shapes
 	t = 2000;
 	std::vector<Surface*>::iterator citr;
 	bool coll = false;
-	float tt = 0;
+	double tt = 0;
 	for (citr = surfaces.begin(); citr != surfaces.end(); ++citr) {
 		//std::cout << (*citr) << std::endl;
 		coll = (*citr)->intersect(ray, t);

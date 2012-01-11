@@ -40,8 +40,8 @@ Vector Sphere::normalAt(Vector& point) const {
 	return (point - position).normalize();
 }
 
-int Sphere::intersect(Ray &r, float &t) {
-
+int Sphere::intersect(Ray &r, double &t) {
+	/*
 	double a = r.getDirection() * r.getDirection();
 	double b = 2 * (r.getDirection() * r.getStart());
 	double c = (r.getStart() - position) * (r.getStart() - position) - radius * radius;
@@ -75,5 +75,28 @@ int Sphere::intersect(Ray &r, float &t) {
     } else {
         t = t0;
         return true;
-    }
+    }*/
+	const Vector v = r.getStart() - position;
+	const double Denominator = 2.0 * r.getDirection().length() * r.getDirection().length();
+	const double a = 2.0 * v * r.getDirection();
+	const double Delta = (a * a) - (2 * Denominator) * (v.length() * v.length() - (radius * radius));
+	
+	if (Delta > 0.0) {
+		const double b = std::sqrt(Delta);
+		const double First = (-a - b) / Denominator;
+		const double Second = (-a + b) / Denominator;
+		if (First < Second && First > 0.001)
+		                                   t = First;
+		                           else {
+		                                   if (Second > 0.001)
+		                                          t = Second;
+		                                   else {
+		                                           if (First > 0.001) 
+		                                                   t = First;
+		                                           else return false;
+		                                   }
+                         }
+return true;
+	}
+	return false;
 }

@@ -17,6 +17,7 @@
  */
 
 #include "raytracer.h"
+#include "camera.h"
 
 #include <cmath>
 
@@ -33,28 +34,35 @@ bool Raytracer::render(Image &image) {
 	
 	std::cout << "** Start rendering..." << std::endl;
 
-	Vector direction(0.0, 0.0, -1.0);
+//	Vector direction(0.0, 0.0, -1.0);
 	
 	// Camera at 0,0,0 look at 0,0,1?
 	
 	std::cout << rand() / double(RAND_MAX) << std::endl;
+	
+	// Camera(Vector &pos, Vector &dir, double fov = PI / 4.0) : pos(pos), dir(dir), fov(fov) { }
+	Camera camera(Vector(0,0,0), Vector(0,0,0), PI / 5.0);
+	camera.initView(sizex, sizey);
 	
 	// Iterate over rays created from camera. No anti-aliasing (later monte carlo)
 	Color c((rand() / double(RAND_MAX)), 0.0, 0.0);	
 	Color c2((rand() / double(RAND_MAX)), 0.0, 0.0);	
 	for (int y = 0; y < sizey; ++y) 
 		for (int x = 0; x < sizex; ++x) {	
-			Vector start(double(x), double(y), 1.0);			
-			Ray ray(start, direction);						
+			//Vector start(double(x), double(y), 1.0);			
+			//Ray ray(start, direction);
+			Ray ray = camera.rayAt(x,y);
 			if(trace(ray, c)) {
 				// Simple Supersampling (anti aliasing)
+				/*
 				for (double i=0;i<1.0;i+=0.25) {
-					Vector start(double(x)+i, double(y)+i, 1.0);			
-					Ray ray(start, direction);
+					//Vector start(double(x)+i, double(y)+i, 1.0);			
+					//Ray ray(start, direction);
+					Ray ray = camera.rayAt(x,y);
 					trace(ray, c2);
 					c += c2;
 					c /= 2.0;
-				}
+				}*/
 				image.setColor(x, y, c);
 			} else {
 				// put background color
@@ -68,15 +76,15 @@ bool Raytracer::trace(Ray &ray, Color &c) {
 
 	// Just ambient raytracing for now...
 
-	Surface *surface;
-	float t = 100.0;
+	Surface *surface = NULL;
+	double t = 0.0;
 	if (this->scene.intersect(ray, t, &surface) == false) {
 		return false;
 	}
 	
 	if (surface != 0) {
 		//std::cout << surface << std::endl;
-		//c = surface->getMaterial().getColor();
+		c = surface->getMaterial().getColor();
 	}
 	
 	c = Color(0,0,0);
@@ -93,7 +101,7 @@ bool Raytracer::trace(Ray &ray, Color &c) {
 		
 		AmbientLight *al = dynamic_cast<AmbientLight*>(p);
 		if (al != NULL) {
-			c += surface->getMaterial().getColor() * 0.1;
+			c += surface->getMaterial().getColor() * 0.5;
 		}
 		
 		PointLight *pl = dynamic_cast<PointLight*>(p);              
@@ -117,7 +125,7 @@ bool Raytracer::trace(Ray &ray, Color &c) {
 			float lambert = (lightRay.getDirection() * n);
 			//Color c(lambert * 0.9, lambert* 0.0, lambert * 0.0);
 			Color cl = pl->getColor();
-			c += surface->getMaterial().getColor() * lambert;
+			c += surface->getMaterial().getColor() * lambert * 0.7;
 			c += cl * lambert;
 			//image.setColor(x, y, c);
 		}	

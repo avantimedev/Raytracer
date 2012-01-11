@@ -26,6 +26,8 @@ public:
 	Vector();
 	Vector(double x, double y, double z);
 
+//	double length();
+	double length() const;
 	// double length -- sqrt(v->x*v->x + v->y*v->y + v->z*v->z)
 	// double normalize
 	// double distance
@@ -54,6 +56,9 @@ private:
 	friend double operator*(const Vector &vec1, const Vector &vec2);
 	friend Vector operator*(const Vector &vec1, const double scalar);
 	friend Vector operator*(const double scalar, const Vector &vec1);
+	friend Vector operator/(const Vector &vec1, const double scalar);
+	friend Vector operator/(const double scalar, const Vector &vec1);
+	friend Vector operator^(const Vector &vec1, const Vector &vec2);
 	//friend Vector operator/(const Vector &vec1, const double scalar);
 	//friend bool operator==(const Vector &vec1) const;
 	//friend bool operator!=(const Vector &vec1) const;

@@ -25,7 +25,7 @@
 class Ray {
 public:
 	Ray();
-	Ray(Vector &start, Vector &direction);
+	Ray(const Vector &start, const Vector &direction);
 
 	const Vector& getStart() const;
 	const Vector& getDirection() const;
