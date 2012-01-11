@@ -26,6 +26,7 @@
 #include "light.h"
 #include "raytracer.h"
 #include "plane.h"
+#include "matrix.h"
 
 #include <cmath>
 /*
@@ -118,6 +119,17 @@ void testRender() {
 	tga.output(image);
 }
 
+void testmatrix() {
+	Matrix m;
+	Matrix n;
+	std::cout << m << std::endl;
+	m.identity();
+	std::cout << m << std::endl;
+	std::cout << m(0,0) << std::endl;
+	n.identity();
+	std::cout << m * n << std::endl;
+}
+
 int main() 
 {
 	// Build scene
@@ -128,6 +140,7 @@ int main()
 	//TGA tga("hello.tga");
 	//tga.output(image);
 
-	testRender();
+	//testRender();
+	testmatrix();
 }
 

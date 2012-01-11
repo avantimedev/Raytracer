@@ -7,8 +7,8 @@ all: raytracer
 
 # The following rule means "if ltest is older than ltest.o or list.o,
 # then link ltest".
-raytracer: color.o image.o light.o main.o material.o point.o ray.o scene.o sphere.o vector.o surface.o raytracer.o plane.o tga.o
-	g++ -o raytracer color.o image.o light.o main.o material.o point.o ray.o scene.o sphere.o vector.o surface.o raytracer.o plane.o tga.o
+raytracer: color.o image.o light.o main.o material.o point.o ray.o scene.o sphere.o vector.o surface.o raytracer.o plane.o matrix.o tga.o
+	g++ -o raytracer color.o image.o light.o main.o material.o point.o ray.o scene.o sphere.o vector.o surface.o raytracer.o plane.o matrix.o tga.o
 
 # Define the rules for the object files.
 color.o: color.cc color.h
@@ -31,6 +31,8 @@ sphere.o: sphere.cc sphere.h
 	g++ -c $(CXXFLAGS) sphere.cc
 vector.o: vector.cc vector.h
 	g++ -c $(CXXFLAGS) vector.cc
+matrix.o: matrix.cc matrix.h
+	g++ -c $(CXXFLAGS) matrix.cc
 surface.o: surface.cc surface.h
 	g++ -c $(CXXFLAGS) surface.cc
 plane.o: plane.cc plane.h
@@ -39,5 +41,7 @@ raytracer.o: raytracer.cc raytracer.h
 	g++ -c $(CXXFLAGS) raytracer.cc
 tga.o: tga.cc tga.h
 	g++ -c $(CXXFLAGS) tga.cc
+
+# Clean rule
 clean:
 	rm -rf *o raytracer
