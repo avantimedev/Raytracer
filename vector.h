@@ -39,10 +39,11 @@ public:
 	// double x()
 	// double y()
 	// double z()
-
 	void operator+=(const Vector &vec);
 	void operator-=(const Vector &vec);
 	void operator*=(const double scalar);
+	Vector operator-() const;
+
 	//void operator/=(const double scalar);
 private:
 	double x;

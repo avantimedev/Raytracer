@@ -81,6 +81,14 @@ Vector operator^(const Vector &vec1, const Vector &vec2) {
 	return Vector(vec1.y * vec2.z - vec1.z * vec2.y, vec1.z * vec2.x - vec1.x * vec2.z, vec1.x * vec2.y - vec1.y * vec2.x);
 }
 
+Vector Vector::operator-() const {
+	Vector v;
+	v.x = -x;
+	v.y = -y;
+	v.z = -z;
+	return v;
+}
+
 void Vector::operator+=(const Vector &vec) {
 	this->x += vec.x;
 	this->y += vec.y;

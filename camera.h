@@ -79,7 +79,7 @@ public:
 
 		Vector diff4 = N + 0.5*(2*v+1-height)*yInc + 0.5*(2*u+1-width)*xInc;
 		Vector dir = (N + 0.5*(2*v+1-height)*yInc + 0.5*(width-2*u+1)*xInc)/diff4.length();
-		return Ray(pos, dir.normalize());
+		return Ray(pos, dir);
 	}
 
 	friend std::ostream& operator<<(std::ostream &out, const Camera &c);

@@ -84,7 +84,7 @@ bool Raytracer::trace(Ray &ray, Color &c) {
 	
 	if (surface != 0) {
 		//std::cout << surface << std::endl;
-		c = surface->getMaterial().getColor();
+		//c = surface->getMaterial().getColor();
 	}
 	
 	c = Color(0,0,0);
@@ -93,7 +93,9 @@ bool Raytracer::trace(Ray &ray, Color &c) {
 	
 	// Trace lights
 	// Raytracing works only for point and ambient lights
-	
+
+	// TODO: Create shade function...	
+
 	std::vector<Light*>::iterator liter;
 	for (liter = scene.getLights().begin(); liter != scene.getLights().end(); ++liter) {
 		// ambient light
@@ -101,17 +103,32 @@ bool Raytracer::trace(Ray &ray, Color &c) {
 		
 		AmbientLight *al = dynamic_cast<AmbientLight*>(p);
 		if (al != NULL) {
-			c += surface->getMaterial().getColor() * 0.5;
+			c += surface->getMaterial().getColor() * 0.9;
 		}
 		
 		PointLight *pl = dynamic_cast<PointLight*>(p);              
 		if (pl == NULL)
 			continue;
-			
+		
 		// Calculate light component from point light
 		Vector newStart = (ray.getStart() + ray.getDirection() * t);
 		Vector dist = (pl->getPosition() - newStart).normalize();
 		Vector n = surface->normalAt(newStart);// newStart - surface->getPosition();
+
+		// flip normal if pointing in wrong dir.
+		if((n * ray.getDirection()) > 0.0) n=-n;
+
+		// Check if in shadow (object in the way for ray from hit point to light source)
+		// Create ray from point to PointLight
+		//Vector newDir = t*ray.getDirection();
+		Ray rayToLight = Ray(newStart, pl->getPosition().normalize());
+		double tmax = (newStart - pl->getPosition().normalize()).length();
+		//std::cout << tmax << std::endl;
+		double tt = 0;
+		//if (this->scene.intersect(rayToLight, tt, &surface) == true)
+			//if (tt > 0 && tt < tmax) continue;
+		//	continue;
+
 		/*
 		double temp = n * n;
 		if (temp == 0.0) continue;
@@ -119,14 +136,22 @@ bool Raytracer::trace(Ray &ray, Color &c) {
 		n = n * temp;
 		*/
 		if (n * dist >= 0.0f) {
-			Vector arg = (dist * (1/t)).normalize();
+			//Vector arg = (dist * (1/t)).normalize();
+			Vector arg = (dist * (1/t));
 			Ray lightRay(newStart, arg);
 			
 			float lambert = (lightRay.getDirection() * n);
 			//Color c(lambert * 0.9, lambert* 0.0, lambert * 0.0);
 			Color cl = pl->getColor();
-			c += surface->getMaterial().getColor() * lambert * 0.7;
+			c += surface->getMaterial().getColor() * lambert;
+			c += surface->getMaterial().getColor() * lambert;
+			c += surface->getMaterial().getColor() * lambert;
+			c += surface->getMaterial().getColor() * lambert;
+			c += surface->getMaterial().getColor() * lambert;
+			c += surface->getMaterial().getColor() * lambert;
+			c += surface->getMaterial().getColor() * lambert;
 			c += cl * lambert;
+
 			//image.setColor(x, y, c);
 		}	
 	}
