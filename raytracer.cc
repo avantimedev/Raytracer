@@ -132,7 +132,7 @@ bool Raytracer::trace(Ray &ray, Color &c) {
 		Vector colPoint = ray.pointAt(t);
 		Ray toLight = Ray(colPoint, (pl->getPosition() - colPoint).normalize());
 		Surface *surface2 = NULL;
-		double tmax = (colPoint - (pl->getPosition() - colPoint)).length();
+		//double tmax = (colPoint - (pl->getPosition() - colPoint)).length();
 		if (this->scene.intersect(toLight, tt, &surface2) == true)
 			continue;
 		

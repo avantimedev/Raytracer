@@ -34,20 +34,20 @@ void TGA::output(Image &image) {
 	// TGA Header
 	outputfile.put(0);
 	outputfile.put(0);
-    outputfile.put(2);
-    outputfile.put(0);
+	outputfile.put(2);
 	outputfile.put(0);
-    outputfile.put(0);
 	outputfile.put(0);
-    outputfile.put(0);
-    outputfile.put(0);
+	outputfile.put(0);
+	outputfile.put(0);
+	outputfile.put(0);
+	outputfile.put(0);
 	outputfile.put(0); 
-    outputfile.put(0);
 	outputfile.put(0);
-    outputfile.put(static_cast<unsigned char>(image.getWidth() & 0x00FF)).put(static_cast<unsigned char>((image.getWidth() & 0xFF00) / 256));
-    outputfile.put(static_cast<unsigned char>(image.getHeight() & 0x00FF)).put(static_cast<unsigned char>((image.getHeight() & 0xFF00) / 256));
-    outputfile.put(24);
-    outputfile.put(0);
+	outputfile.put(0);
+	outputfile.put(static_cast<unsigned char>(image.getWidth() & 0x00FF)).put(static_cast<unsigned char>((image.getWidth() & 0xFF00) / 256));
+	outputfile.put(static_cast<unsigned char>(image.getHeight() & 0x00FF)).put(static_cast<unsigned char>((image.getHeight() & 0xFF00) / 256));
+	outputfile.put(24);
+	outputfile.put(0);
 
 	for (unsigned int i=0;i<image.getWidth()*image.getHeight();i++) {
 		Color *color = image.getColor(i);		
@@ -56,6 +56,6 @@ void TGA::output(Image &image) {
 		outputfile.put(static_cast<unsigned char>(std::min(color->r()*255.0, 255.0)));		
 	}
 	outputfile.close();
-	
+
 	std::cout << "File written to: " << this->filename << std::endl;
 }

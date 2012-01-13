@@ -18,6 +18,8 @@
 
 #include "scene.h"
 
+#include <limits>
+
 int Scene::intersect(Ray &ray, double &rayPos, Surface** surface) {
 	// look for intersection between all shapes
 	

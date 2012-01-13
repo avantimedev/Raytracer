@@ -31,8 +31,13 @@ public:
 		this->radius = radius;
 	}
 	virtual std::string toString() const;
-	virtual int intersect(Ray &r, double &t);
+	virtual bool intersect(Ray &r, double &t);
 	virtual Vector normalAt(Vector& point) const;
+
+	virtual Vector toUV(const Vector&) const {
+		return Vector(0,0,0);
+	}
+
 private:
 	Vector position;
 	double radius;

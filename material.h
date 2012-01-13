@@ -30,7 +30,7 @@ public:
 	Material(const Color &color, double ka, double kd, double ks, double n) : color(color), ka(ka), kd(kd), ks(ks), n(n) {}
 	const Color& getColor() const { return color; }
 	
-	Color getColor(const Vector& point) const {
+	Color getColor(const Vector&) const {
 		return color;
 	}
 	

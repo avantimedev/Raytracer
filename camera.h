@@ -38,29 +38,6 @@ public:
 	}
 
 	Ray rayAt(double u, double v) {
-		/*
-		double fovx = PI / 4.0;
-		double fovy = fovx * static_cast<double>(height) / static_cast<double>(width);
-		tan_x = tan(fovx);
-		tan_y = tan(fovy);
-
-		// (u,v) -> (x,y) in the plane (view-plane)
-		double x = ((2*u - static_cast<double>(width)) / static_cast<double>(width)) * tan_x;
-		double y = ((2*v - static_cast<double>(height)) / static_cast<double>(height)) * tan_y;
-		
-		// Ray goes from camera at (0,0,0) -> view plane at (x, y, -1)
-		Vector direction(x, y, 1.0);
-		return Ray(pos, direction.normalize());
-		
-		Vector lookFrom(0,0,0);
-		Vector lookAt(0,0,1);
-		Vector lookUp(0,0,0);
-		double fov = PI / 4.0;
-		Vector diff = lookAt - lookFrom;
-		Vector N = (lookAt - lookFrom) / diff.length();
-		Vector U = N;
-		*/
-
 		// New camera code
 		Vector lookFrom(0,0,-5);
 		Vector lookAt(0,0,15);

@@ -35,7 +35,7 @@ public:
 	//Surface(const Color& color) : color(color) {}
 	virtual ~Surface();
 	
-	virtual int intersect(Ray& r, double& t) = 0;
+	virtual bool intersect(Ray& r, double& t) = 0;
 	//virtual box boundingbox() = 0;
 	virtual std::string toString() const;
 	

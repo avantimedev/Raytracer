@@ -72,10 +72,10 @@ void testcamera() {
 	
 	Vector xInc = U * (2*tan(fov/2.0))/width;
 	Vector yInc = V * (2*tan(fov/2.0))/width;
-	int x, y;
+	int x = 0;
+	int y = 0;
 	
-	Vector diff4 = N + 0.5*(2*y+1-height)*yInc + 0.5*(2*x+1-width)*xInc;
-	
+	Vector diff4 = N + 0.5*(2*y+1-height)*yInc + 0.5*(2*x+1-width)*xInc;	
 	Vector dir = (N + 0.5*(2*y+1-height)*yInc + 0.5*(2*x+1-width)*xInc)/diff4.length();
 	
 	std::cout << "O: " << lookFrom << std::endl;
@@ -84,6 +84,8 @@ void testcamera() {
 	std::cout << "V: " << V << std::endl;
 	std::cout << "yInc: " << yInc << std::endl;
 	std::cout << "xInc: " << xInc << std::endl;
+	std::cout << "x: " << x << std::endl;
+	std::cout << "y: " << y << std::endl;
 }
 
 void testmatrix() {
