@@ -22,12 +22,18 @@
 #include <iostream>
 
 #include "color.h"
+#include "vector.h"
 
 class Material {
 public:
 	Material();
 	Material(const Color &color, double ka, double kd, double ks, double n) : color(color), ka(ka), kd(kd), ks(ks), n(n) {}
 	const Color& getColor() const { return color; }
+	
+	Color getColor(const Vector& point) const {
+		return color;
+	}
+	
 	double aCoeff() { return ka; }
 	double dCoeff() { return kd; }
 	double sCoeff() { return ks; }

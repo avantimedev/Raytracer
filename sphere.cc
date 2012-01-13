@@ -77,7 +77,7 @@ int Sphere::intersect(Ray &r, double &t) {
         return true;
     }*/
 	const Vector v = r.getStart() - position;
-	const double Denominator = 2.0 * r.getDirection().length() * r.getDirection().length();
+const double Denominator = 2.0 * r.getDirection().length() * r.getDirection().length();
 	const double a = 2.0 * v * r.getDirection();
 	const double Delta = (a * a) - (2 * Denominator) * (v.length() * v.length() - (radius * radius));
 	
@@ -86,17 +86,17 @@ int Sphere::intersect(Ray &r, double &t) {
 		const double First = (-a - b) / Denominator;
 		const double Second = (-a + b) / Denominator;
 		if (First < Second && First > 0.001)
-		                                   t = First;
-		                           else {
-		                                   if (Second > 0.001)
-		                                          t = Second;
-		                                   else {
-		                                           if (First > 0.001) 
-		                                                   t = First;
-		                                           else return false;
-		                                   }
-                         }
-return true;
+			t = First;
+		else {
+			if (Second > 0.001)
+				t = Second;
+			else {
+				if (First > 0.001) 
+					t = First;
+				else return false;
+			}
+		}
+		return true;
 	}
-	return false;
+	else return false;
 }

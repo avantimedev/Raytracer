@@ -41,11 +41,11 @@ void testRender(const std::string filename) {
 	//scene.addShape(new Plane(Material(Color(0.5, 0.5, 0.5), 0.2, 0.1, 0.4, 2), Vector(0.0, 1.0, 0.0), -1.0));
 
 	//scene.addLight(new PointLight(Color(0.9, 0.9, 0.9), Vector(6, 6, 0)));
-	scene.addShape(new Sphere(Material(Color(1.0, 0.0, 0.0), 0.2, 0.1, 0.4, 2), Vector(4.0, 0.0, 20.0), 1.9));
-	scene.addShape(new Sphere(Material(Color(0.0, 1.0, 0.0), 0.2, 0.1, 0.4, 2), Vector(0.0, 0.0, 20.0), 1.9));	
-	scene.addShape(new Sphere(Material(Color(0.0, 0.0, 1.0), 0.2, 0.1, 0.4, 2), Vector(-4.0, 0.0, 20.0), 1.9));
+	scene.addShape(new Sphere(Material(Color(1.0, 0.0, 0.0), 0.2, 0.1, 0.4, 2), Vector(4.0, 1.0, 20.0), 1.9));
+	scene.addShape(new Sphere(Material(Color(0.0, 1.0, 0.0), 0.2, 0.1, 0.4, 2), Vector(0.0, 1.0, 20.0), 1.9));	
+	scene.addShape(new Sphere(Material(Color(0.0, 0.0, 1.0), 0.2, 0.1, 0.4, 2), Vector(-4.0, 1.0, 20.0), 1.9));
 	scene.addShape(new Plane(Material(Color(0.5, 0.5, 0.5), 0.2, 0.1, 0.4, 2), Vector(0.0, 1.0, 0.0), -1.0));
-	scene.addLight(new PointLight(Color(2.0, 2.0, 2.0), Vector(1, 2, 15)));
+	scene.addLight(new PointLight(Color(2.0, 2.0, 2.0), Vector(1, 3, 15)));
 	
 	Raytracer raytracer(scene);
 

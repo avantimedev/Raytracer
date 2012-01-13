@@ -29,7 +29,11 @@ public:
 
 	const Vector& getStart() const;
 	const Vector& getDirection() const;
-
+	
+	Vector pointAt(double l) {
+		return start + (direction * l);
+	}
+	
 private:
 	Vector start;
 	Vector direction;

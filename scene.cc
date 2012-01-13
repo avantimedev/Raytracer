@@ -18,20 +18,41 @@
 
 #include "scene.h"
 
-int Scene::intersect(Ray &ray, double &t, Surface** surface) {
+int Scene::intersect(Ray &ray, double &rayPos, Surface** surface) {
 	// look for intersection between all shapes
-	t = 2000;
+	
+	bool sceneCol = false;
+	rayPos = std::numeric_limits<double>::infinity();	
+	std::vector<Surface*>::iterator citr;
+	
+	for (citr = surfaces.begin(); citr != surfaces.end(); citr++) {
+		double t;
+		bool objCol = false;
+		objCol = (*citr)->intersect(ray, t);
+		if (objCol == true && t < rayPos) {
+			rayPos = t;
+			*surface = *citr;
+			return true;
+		}
+	}
+	
+	return sceneCol;
+	
+	
+	/*
+	rayPos = std::numeric_limits<double>::infinity();
 	std::vector<Surface*>::iterator citr;
 	bool coll = false;
 	double tt = 0;
 	for (citr = surfaces.begin(); citr != surfaces.end(); ++citr) {
 		//std::cout << (*citr) << std::endl;
+		double t;
 		coll = (*citr)->intersect(ray, t);
-		if (coll && tt < t) {
+		if (coll && t < rayPos) {
 			//std::cout << "Intersect: " << (**citr) << std::endl;
 			//std::cout << "Collide: " << t << std::endl;
 			*surface = *citr;
-			tt = t;
+			rayPos = t;
 			return true;
 		}
 	}
@@ -39,6 +60,7 @@ int Scene::intersect(Ray &ray, double &t, Surface** surface) {
 	//if (coll) return true;
 	
 	return false;
+	*/		
 }
 
 void Scene::addShape(Surface *surface) {

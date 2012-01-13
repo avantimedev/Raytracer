@@ -54,15 +54,15 @@ bool Raytracer::render(Image &image) {
 			Ray ray = camera.rayAt(x,y);
 			if(trace(ray, c)) {
 				// Simple Supersampling (anti aliasing)
-				/*
-				for (double i=0;i<1.0;i+=0.25) {
+				
+				for (double i=0;i<2.0;i+=0.5) {
 					//Vector start(double(x)+i, double(y)+i, 1.0);			
 					//Ray ray(start, direction);
-					Ray ray = camera.rayAt(x,y);
+					Ray ray = camera.rayAt(double(x)+i,double(y)+i);
 					trace(ray, c2);
 					c += c2;
-					c /= 2.0;
-				}*/
+				}
+				c*=0.2;
 				image.setColor(x, y, c);
 			} else {
 				// put background color
@@ -84,10 +84,10 @@ bool Raytracer::trace(Ray &ray, Color &c) {
 	
 	if (surface != 0) {
 		//std::cout << surface << std::endl;
-		//c = surface->getMaterial().getColor();
+		c = surface->getMaterial().getColor() * 0.1;
 	}
 	
-	c = Color(0,0,0);
+	//c = Color(0.0, 0.0, 0.0);
 	
 	//std::cout << surface->getMaterial() << std::endl;
 	
@@ -103,7 +103,7 @@ bool Raytracer::trace(Ray &ray, Color &c) {
 		
 		AmbientLight *al = dynamic_cast<AmbientLight*>(p);
 		if (al != NULL) {
-			c += surface->getMaterial().getColor() * 0.9;
+			//c += surface->getMaterial().getColor() * 0.9;
 		}
 		
 		PointLight *pl = dynamic_cast<PointLight*>(p);              
@@ -121,21 +121,28 @@ bool Raytracer::trace(Ray &ray, Color &c) {
 		// Check if in shadow (object in the way for ray from hit point to light source)
 		// Create ray from point to PointLight
 		//Vector newDir = t*ray.getDirection();
-		Ray rayToLight = Ray(newStart, pl->getPosition().normalize());
-		double tmax = (newStart - pl->getPosition().normalize()).length();
+		//Ray rayToLight = Ray(newStart, pl->getPosition().normalize());
 		//std::cout << tmax << std::endl;
-		double tt = 0;
-		//if (this->scene.intersect(rayToLight, tt, &surface) == true)
-			//if (tt > 0 && tt < tmax) continue;
-		//	continue;
+		
+//		if (this->scene.intersect(rayToLight, tt, &surface) == true)
+//			if (tt > 0 && tt < tmax) continue;
+				//continue;
 
+		double tt = 0;
+		Vector colPoint = ray.pointAt(t);
+		Ray toLight = Ray(colPoint, (pl->getPosition() - colPoint).normalize());
+		Surface *surface2 = NULL;
+		double tmax = (colPoint - (pl->getPosition() - colPoint)).length();
+		if (this->scene.intersect(toLight, tt, &surface2) == true)
+			continue;
+		
 		/*
 		double temp = n * n;
 		if (temp == 0.0) continue;
 		temp = 1.0 / sqrt(temp);
 		n = n * temp;
 		*/
-		if (n * dist >= 0.0f) {
+		if (n * dist >= 0.0) {
 			//Vector arg = (dist * (1/t)).normalize();
 			Vector arg = (dist * (1/t));
 			Ray lightRay(newStart, arg);

@@ -42,6 +42,13 @@ public:
 	virtual Vector normalAt(Vector& point) const = 0;
 	
 	const Material& getMaterial() const { return material; }
+	
+	virtual Vector toUV(const Vector &Point) const = 0;
+  
+	const Color colorAt(const Vector& point) const {
+		return material.getColor(toUV(point));
+	}
+	
 	//const Material* getMaterial() const { return &material; }
 	//const Color& getColor() const { return color; }
 	

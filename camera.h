@@ -37,7 +37,7 @@ public:
 		this->width = width;
 	}
 
-	Ray rayAt(int u, int v) {
+	Ray rayAt(double u, double v) {
 		/*
 		double fovx = PI / 4.0;
 		double fovy = fovx * static_cast<double>(height) / static_cast<double>(width);
