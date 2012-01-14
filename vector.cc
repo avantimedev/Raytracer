@@ -36,7 +36,7 @@ double Vector::length() const {
 	return sqrt((x * x) + (y * y) + (z * z));
 }
 
-Vector Vector::normalize() {
+Vector Vector::normalize() const {
 	double l = length();
 	double nx = x/l;
 	double ny = y/l;

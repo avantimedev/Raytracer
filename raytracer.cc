@@ -117,6 +117,12 @@ bool Raytracer::trace(Ray& ray, Color& c, int depth) {
 		//vector3 V = a_Ray.GetDirection();
 		//vector3 R = L - 2.0f * DOT( L, N ) * N;
 		//float dot = DOT( V, R );
+		// Vector from hit point to light source (toLight)
+		// Hit point surface normal (n)
+		// V - viewing vector (ray.getDirection)
+		Vector R = (2*n*(n*toLight.getDirection())-toLight.getDirection()).normalize();
+		double Is = 0.6 * (R * ray.getDirection())*(R * ray.getDirection())*(R * ray.getDirection())*(R * ray.getDirection());
+		c += Is;
 	}
 	
 	// Reflection

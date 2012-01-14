@@ -35,7 +35,7 @@ public:
 	// dot *
 	// equals
 	// neg
-	Vector normalize();
+	Vector normalize() const;
 	// double x()
 	// double y()
 	// double z()
