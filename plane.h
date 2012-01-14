@@ -25,7 +25,7 @@
 
 class Plane: public Surface {
 public:
-	Plane(const Material& material, const Vector normal, const double distance) : Surface(material), normal(normal), distance(distance) {}
+	Plane(const Material& material, const Vector& normal, const double distance) : Surface(material), normal(normal), distance(distance) {}
 	virtual std::string toString() const;
 	virtual bool intersect(Ray& r, double& t);
 	virtual Vector normalAt(Vector& point) const;

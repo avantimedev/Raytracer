@@ -121,7 +121,12 @@ bool Raytracer::trace(Ray& ray, Color& c, int depth) {
 		// Hit point surface normal (n)
 		// V - viewing vector (ray.getDirection)
 		Vector R = (2*n*(n*toLight.getDirection())-toLight.getDirection()).normalize();
-		double Is = 0.6 * (R * ray.getDirection())*(R * ray.getDirection())*(R * ray.getDirection())*(R * ray.getDirection());
+		
+		double Is = 0;
+		double dot = R * ray.getDirection().normalize();
+		if (dot < 0) {
+			Is = 0.6 * powf( dot, 20 );//(R * ray.getDirection())*(R * ray.getDirection())*(R * ray.getDirection())*(R * ray.getDirection());
+		}
 		c += Is;
 	}
 	
@@ -135,6 +140,9 @@ bool Raytracer::trace(Ray& ray, Color& c, int depth) {
 	}
 	
 	c += reflect * surface->getMaterial().rCoeff();
+	
+	// Refraction
+	
 	
 	return true;
 }

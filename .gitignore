@@ -2,6 +2,7 @@ raytracer
 *.o
 *.tga
 *.png
+*.jpg
 Debug/
 todo_raytracer
 .project
