@@ -30,12 +30,13 @@ class Scene {
 public:
 	Scene(Color &background) : background(background) {}
 
-	void addShape(Surface *surface);
-	void addLight(Light *light);
+	void addShape(Surface* surface);
+	void addLight(Light* light);
 
 	Color& getBackground();
 
-	int intersect(Ray &ray, double &t, Surface** surface);
+	int intersect(Ray& ray, double &t, Surface** surface);
+	int intersect_shadow(Ray& ray, double &t, Surface** surface);
 
 	std::vector<Light*> &getLights() { return lights; }
 	

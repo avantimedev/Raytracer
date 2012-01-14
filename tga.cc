@@ -18,16 +18,13 @@
 
 #include "tga.h"
 
-TGA::TGA(const std::string &filename) {
+TGA::TGA(const std::string& filename) {
 	this->filename = filename;
 }
 
-void TGA::output(Image &image) {
+void TGA::output(Image& image) {
 
 	std::ofstream outputfile(filename.c_str(), std::ios_base::binary);
-
-	std::cout << image.getWidth() << std::endl;
-	std::cout << image.getHeight() << std::endl;
 
 	if (!outputfile.is_open()) return;
 

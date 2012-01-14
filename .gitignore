@@ -1,7 +1,9 @@
 raytracer
 *.o
 *.tga
+*.png
 Debug/
 todo_raytracer
 .project
 .cproject
+.DS_Store

@@ -29,7 +29,7 @@ const double PI = 3.1415926535897932384626433832795;
 
 class Camera {
 public:
-	Camera(const Vector &pos, const Vector &dir, double fov = PI / 4.0) : pos(pos), dir(dir), fov(fov) { }
+	Camera(const Vector& pos, const Vector& dir, double fov = PI / 4.0) : pos(pos), dir(dir), fov(fov) { }
 	//~Camera();
 
 	void initView(int width, int height) {

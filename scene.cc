@@ -20,9 +20,7 @@
 
 #include <limits>
 
-int Scene::intersect(Ray &ray, double &rayPos, Surface** surface) {
-	// look for intersection between all shapes
-	
+int Scene::intersect(Ray& ray, double& rayPos, Surface** surface) {
 	bool sceneCol = false;
 	rayPos = std::numeric_limits<double>::infinity();	
 	std::vector<Surface*>::iterator citr;
@@ -34,42 +32,33 @@ int Scene::intersect(Ray &ray, double &rayPos, Surface** surface) {
 		if (objCol == true && t < rayPos) {
 			rayPos = t;
 			*surface = *citr;
-			return true;
+			sceneCol = true;
 		}
-	}
-	
-	return sceneCol;
-	
-	
-	/*
-	rayPos = std::numeric_limits<double>::infinity();
-	std::vector<Surface*>::iterator citr;
-	bool coll = false;
-	double tt = 0;
-	for (citr = surfaces.begin(); citr != surfaces.end(); ++citr) {
-		//std::cout << (*citr) << std::endl;
-		double t;
-		coll = (*citr)->intersect(ray, t);
-		if (coll && t < rayPos) {
-			//std::cout << "Intersect: " << (**citr) << std::endl;
-			//std::cout << "Collide: " << t << std::endl;
-			*surface = *citr;
-			rayPos = t;
-			return true;
-		}
-	}
-	
-	//if (coll) return true;
-	
-	return false;
-	*/		
+	}	
+	return sceneCol;	
 }
 
-void Scene::addShape(Surface *surface) {
+int Scene::intersect_shadow(Ray& ray, double& rayPos, Surface**) {
+	bool sceneCol = false;
+	rayPos = std::numeric_limits<double>::infinity();	
+	std::vector<Surface*>::iterator citr;
+	
+	for (citr = surfaces.begin(); citr != surfaces.end(); citr++) {
+		double t;
+		bool objCol = false;
+		objCol = (*citr)->intersect(ray, t);
+		if (objCol == true && t < rayPos) {
+			return true;
+		}
+	}
+	return sceneCol;	
+}
+
+void Scene::addShape(Surface* surface) {
 	surfaces.push_back(surface);	
 }
 
-void Scene::addLight(Light *light) {
+void Scene::addLight(Light* light) {
 	lights.push_back(light);
 }
 

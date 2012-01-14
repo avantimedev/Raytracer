@@ -28,15 +28,12 @@ Vector Plane::normalAt(Vector&) const {
 	return normal;
 }
 
-bool Plane::intersect(Ray &r, double &t) {
-	
-	//double tt = (normal * r.getStart() + distance) / (normal * r.getDirection());
+bool Plane::intersect(Ray& r, double& t) {
 	double tt = (-normal * r.getStart() + distance) / (normal * r.getDirection());
 	
 	if (tt > 0.001) {
 		t = tt;
 		return true;
 	}
-	
 	return false;
 }

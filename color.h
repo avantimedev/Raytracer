@@ -24,22 +24,21 @@
 class Color {
 public:
 	Color();
-	Color(const Color &color) : red(color.red), green(color.green), blue(color.blue) {}
+	Color(const Color& color) : red(color.red), green(color.green), blue(color.blue) {}
 	Color(double red, double green, double blue);
 	
 	double r() const;
-	double r();
-	double g();
-	double b();
+	double g() const;
+	double b() const;
 	
-	void operator+=(const Color &c);
-	void operator/=(const double &d);
-	void operator*=(const double &d);
-	void operator+=(const double &d);
-	void operator-=(const double &d);
+	void operator+=(const Color& c);
+	void operator/=(const double& d);
+	void operator*=(const double& d);
+	void operator+=(const double& d);
+	void operator-=(const double& d);
 
-	friend Color operator*(const Color &col, const double scalar);
-	friend Color operator*(const double scalar, const Color &col);
+	friend Color operator*(const Color& col, const double scalar);
+	friend Color operator*(const double scalar, const Color& col);
 	
 	friend std::ostream& operator<<(std::ostream& out, const Color& c);
 private:

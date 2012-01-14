@@ -29,7 +29,7 @@ Vector Sphere::normalAt(Vector& point) const {
 	return (point - position).normalize();
 }
 
-bool Sphere::intersect(Ray &r, double &t) {
+bool Sphere::intersect(Ray& r, double& t) {
 
 	const Vector v = r.getStart() - position;
 	const double Denominator = 2.0 * r.getDirection().length() * r.getDirection().length();

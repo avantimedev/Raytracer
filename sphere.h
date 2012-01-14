@@ -26,18 +26,17 @@
 
 class Sphere : public Surface {
 public:
-	Sphere(const Material &material, const Vector &position, double radius) : Surface(material) {
+	Sphere(const Material& material, const Vector& position, double radius) : Surface(material) {
 		this->position = position;
 		this->radius = radius;
 	}
 	virtual std::string toString() const;
-	virtual bool intersect(Ray &r, double &t);
+	virtual bool intersect(Ray& r, double& t);
 	virtual Vector normalAt(Vector& point) const;
 
-	virtual Vector toUV(const Vector&) const {
-		return Vector(0,0,0);
+	virtual Point toUV(const Vector&) const {
+		return Point(0,0);
 	}
-
 private:
 	Vector position;
 	double radius;

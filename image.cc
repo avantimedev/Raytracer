@@ -19,18 +19,6 @@
 #include "image.h"
 #include <iostream>
 
-Image::Image() {
-	width = 0;
-	height = 0;
-}
-
-Image::Image(unsigned int width, unsigned int heigth) {
-	this->width = width;
-	this->height = heigth;
-
-	buffer = new Color[width*heigth];
-}
-
 Color *Image::getColor(unsigned int x, unsigned int y) {
 	return &buffer[y*width+x];
 }
@@ -42,12 +30,4 @@ Color* Image::getColor(unsigned int index) {
 void Image::setColor(unsigned int x, unsigned int y, Color &color) {
 	if (x < width && y < height)
 		buffer[y*width+x] = color;
-}
-
-unsigned int Image::getWidth() const {
-	return width;
-}
-
-unsigned int Image::getHeight() const {
-	return height;
 }

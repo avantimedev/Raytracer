@@ -25,11 +25,12 @@
 
 class Raytracer {
 public:
-	Raytracer(Scene &scene) : scene(scene) {}
+	Raytracer(Scene &scene) : scene(scene), maxDepth(10) {}
 	bool render(Image &image);
 private:
 	Scene &scene;
-	bool trace(Ray &ray, Color &c);
+	bool trace(Ray& ray, Color& c, int depth);
+	int maxDepth;
 };
 
 #endif

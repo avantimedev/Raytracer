@@ -23,12 +23,15 @@
 
 class Point {
 public:
-	Point();
-	Point(double x, double y, double z);
+	Point() : x(0), y(0) {}
+	Point(double x, double y) : x(x), y(y) {}
+	
+	double getX() const { return x; }
+	double getY() const { return y; }
+	
 private:
 	double x;
 	double y;
-	double z;
 
 	friend std::ostream& operator<<(std::ostream& out, const Point& p);
 };

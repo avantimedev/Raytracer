@@ -30,57 +30,54 @@ Color::Color(double red, double green, double blue) {
 	this->blue = blue;
 }
 
-double Color::r() {
-	return red;
-}
 
 double Color::r() const {
 	return red;
 }
 
-double Color::g() {
+double Color::g() const {
 	return green;
 }
 
-double Color::b() {
+double Color::b() const {
 	return blue;
 }
 
-void Color::operator+=(const Color &c) {
+void Color::operator+=(const Color& c) {
 	red += c.red;
 	green += c.green;
 	blue += c.blue;	
 }
 
-void Color::operator/=(const double &d) {
+void Color::operator/=(const double& d) {
 	red /= d;
 	green /= d;
 	blue /= d;
 }
 
-void Color::operator*=(const double &d) {
+void Color::operator*=(const double& d) {
 	red *= d;
 	green *= d;
 	blue *= d;
 }
 
-void Color::operator+=(const double &d) {
+void Color::operator+=(const double& d) {
 	red += d;
 	green += d;
 	blue += d;
 }
 
-void Color::operator-=(const double &d) {
+void Color::operator-=(const double& d) {
 	red -= d;
 	green -= d;
 	blue -= d;
 }
 
-Color operator*(const Color &col, const double scalar) {
+Color operator*(const Color& col, const double scalar) {
 	return Color(col.red * scalar, col.green * scalar, col.blue * scalar);
 }
 
-Color operator*(const double scalar, const Color &col) {
+Color operator*(const double scalar, const Color& col) {
 	return Color(col.red * scalar, col.green * scalar, col.blue * scalar);
 }
 

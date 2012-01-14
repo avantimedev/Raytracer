@@ -24,7 +24,7 @@
 
 class Light {
 public:
-	Light(const Color &color) : color(color) {}
+	Light(const Color& color) : color(color) {}
 	virtual ~Light() {}
 	Color &getColor() { return color; }
 private:
@@ -33,15 +33,15 @@ private:
 
 class PointLight : public Light {
 public:
-	PointLight(const Color &color, const Vector& pos) : Light(color), pos(pos) {}
-	Vector &getPosition() { return pos; }
+	PointLight(const Color& color, const Vector& pos) : Light(color), pos(pos) {}
+	Vector& getPosition() { return pos; }
 private:
 	Vector pos;
 };
 
 class AmbientLight : public Light {
 public:
-	AmbientLight(const Color &color) : Light(color) {}
+	AmbientLight(const Color& color) : Light(color) {}
 private:
 };
 

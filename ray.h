@@ -25,13 +25,19 @@
 class Ray {
 public:
 	Ray();
-	Ray(const Vector &start, const Vector &direction);
+	Ray(const Vector& start, const Vector& direction);
 
 	const Vector& getStart() const;
 	const Vector& getDirection() const;
 	
 	Vector pointAt(double l) {
 		return start + (direction * l);
+	}
+	
+	Ray reflectAt(Vector& normal, Vector& point) {
+		Vector tmp = normal * (2 * (normal * direction));
+		return Ray(point, direction - tmp);
+		//return Ray(normal, point);
 	}
 	
 private:

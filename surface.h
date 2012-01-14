@@ -32,7 +32,6 @@
 class Surface {
 public:
 	Surface(const Material& material) : material(material) {}
-	//Surface(const Color& color) : color(color) {}
 	virtual ~Surface();
 	
 	virtual bool intersect(Ray& r, double& t) = 0;
@@ -43,14 +42,11 @@ public:
 	
 	const Material& getMaterial() const { return material; }
 	
-	virtual Vector toUV(const Vector &Point) const = 0;
-  
+	virtual Point toUV(const Vector &Point) const = 0;
+	
 	const Color colorAt(const Vector& point) const {
 		return material.getColor(toUV(point));
 	}
-	
-	//const Material* getMaterial() const { return &material; }
-	//const Color& getColor() const { return color; }
 	
 	friend std::ostream& operator<<(std::ostream& out, const Surface& s);
 private:	

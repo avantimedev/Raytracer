@@ -48,7 +48,7 @@ public:
 	bool operator==(const Matrix& matrix);
 	// determinant?
 
-	friend std::ostream &operator<<(std::ostream &out, const Matrix &matrix);
+	friend std::ostream &operator<<(std::ostream& out, const Matrix& matrix);
 
 private:
 	double elems[16]; // or row major order

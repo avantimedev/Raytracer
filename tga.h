@@ -28,8 +28,8 @@
 
 class TGA {
 public:
-	TGA(const std::string &filename);
-	void output(Image &image);
+	TGA(const std::string& filename);
+	void output(Image& image);
 private:
 	std::string filename;
 };

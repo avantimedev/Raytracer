@@ -117,7 +117,7 @@ Matrix operator*(const Matrix& lhs, const double scalar) {
 	return m;
 }
 
-std::ostream &operator<<(std::ostream &out, const Matrix &matrix) {
+std::ostream& operator<<(std::ostream& out, const Matrix& matrix) {
 	out << "Matrix:" << std::endl;
 	for (int x=0;x<4;x++) {
 		for (int y=0;y<4;y++)

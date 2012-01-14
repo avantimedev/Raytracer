@@ -39,10 +39,14 @@ public:
 	// double x()
 	// double y()
 	// double z()
-	void operator+=(const Vector &vec);
-	void operator-=(const Vector &vec);
+	void operator+=(const Vector& vec);
+	void operator-=(const Vector& vec);
 	void operator*=(const double scalar);
 	Vector operator-() const;
+
+	double getX() const { return x; }
+	double getY() const { return y; }
+	double getZ() const { return z; }
 
 	//void operator/=(const double scalar);
 private:
@@ -52,14 +56,14 @@ private:
 
 	friend std::ostream& operator<<(std::ostream& out, const Vector& v);
 
-	friend Vector operator+(const Vector &vec1, const Vector &vec2);
-	friend Vector operator-(const Vector &vec1, const Vector &vec2);
-	friend double operator*(const Vector &vec1, const Vector &vec2);
-	friend Vector operator*(const Vector &vec1, const double scalar);
-	friend Vector operator*(const double scalar, const Vector &vec1);
-	friend Vector operator/(const Vector &vec1, const double scalar);
-	friend Vector operator/(const double scalar, const Vector &vec1);
-	friend Vector operator^(const Vector &vec1, const Vector &vec2);
+	friend Vector operator+(const Vector& vec1, const Vector& vec2);
+	friend Vector operator-(const Vector& vec1, const Vector& vec2);
+	friend double operator*(const Vector& vec1, const Vector& vec2);
+	friend Vector operator*(const Vector& vec1, const double scalar);
+	friend Vector operator*(const double scalar, const Vector& vec1);
+	friend Vector operator/(const Vector& vec1, const double scalar);
+	friend Vector operator/(const double scalar, const Vector& vec1);
+	friend Vector operator^(const Vector& vec1, const Vector& vec2);
 	//friend Vector operator/(const Vector &vec1, const double scalar);
 	//friend bool operator==(const Vector &vec1) const;
 	//friend bool operator!=(const Vector &vec1) const;

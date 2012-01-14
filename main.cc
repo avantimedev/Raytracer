@@ -27,32 +27,97 @@
 #include "raytracer.h"
 #include "plane.h"
 #include "matrix.h"
+#include "openglcanvas.h"
 
+#include <stdio.h>
+#include <stdlib.h>
 #include <cmath>
 
-void testRender(const std::string filename) {
+void testRender1(const std::string filename) {
 	
 	Color background(0,0,0);
 	Scene scene(background);
 
-	//scene.addShape(new Sphere(Material(Color(1.0, 0.0, 1.0), 0.2, 0.1, 0.4, 2), Vector(-1.0, 0.0, 10.0), 1.0));
-	//scene.addShape(new Sphere(Material(Color(1.0, 0.0, 1.0), 0.2, 0.1, 0.4, 2), Vector(1.0, 0.0, 10.0), 1.0));
+	std::cout << "@ Creating scene" << std::endl;
 
-	//scene.addShape(new Plane(Material(Color(0.5, 0.5, 0.5), 0.2, 0.1, 0.4, 2), Vector(0.0, 1.0, 0.0), -1.0));
+	// Surfaces
+	scene.addShape(new Sphere(Material(Color(1.0, 0.0, 0.0), 0.2, 0.8, 0.4, 2, 0.05), Vector(4.0, 1.0, 20.0), 1.9));
+	scene.addShape(new Sphere(Material(Color(0.0, 1.0, 0.0), 0.2, 0.8, 0.4, 2, 0.05), Vector(0.0, 1.0, 20.0), 1.9));	
+	scene.addShape(new Sphere(Material(Color(0.0, 0.0, 1.0), 0.2, 0.8, 0.4, 2, 0.05), Vector(-4.0, 1.0, 20.0), 1.9));
+	scene.addShape(new Plane(Material(Color(0.5, 0.5, 0.5), 0.08, 0.8, 0.4, 100, 0.7), Vector(0.0, 1.0, 0.0), -1.0));
 
-	//scene.addLight(new PointLight(Color(0.9, 0.9, 0.9), Vector(6, 6, 0)));
-	scene.addShape(new Sphere(Material(Color(1.0, 0.0, 0.0), 0.2, 0.1, 0.4, 2), Vector(4.0, 1.0, 20.0), 1.9));
-	scene.addShape(new Sphere(Material(Color(0.0, 1.0, 0.0), 0.2, 0.1, 0.4, 2), Vector(0.0, 1.0, 20.0), 1.9));	
-	scene.addShape(new Sphere(Material(Color(0.0, 0.0, 1.0), 0.2, 0.1, 0.4, 2), Vector(-4.0, 1.0, 20.0), 1.9));
-	scene.addShape(new Plane(Material(Color(0.5, 0.5, 0.5), 0.2, 0.1, 0.4, 2), Vector(0.0, 1.0, 0.0), -1.0));
-	scene.addLight(new PointLight(Color(2.0, 2.0, 2.0), Vector(1, 3, 15)));
+	// Lights
+	scene.addLight(new PointLight(Color(1.0, 1.0, 1.0), Vector(1, 3, 15)));
+	scene.addLight(new AmbientLight(Color(0.2, 0.2, 0.2)));
 	
 	Raytracer raytracer(scene);
 
 	Image image(800, 600);
+	
+	std::cout << "@ Start rendering scene" << std::endl;
 	raytracer.render(image);
+	std::cout << "@ Finished rendering" << std::endl;
 	TGA tga(filename);
 	tga.output(image);
+}
+
+void testRender2(const std::string filename) {
+	
+	Color background(0,0,0);
+	Scene scene(background);
+
+	std::cout << "@ Creating scene" << std::endl;
+
+	// Surfaces
+	scene.addShape(new Sphere(Material(Color(1.0, 0.2, 0.5), 0.2, 0.8, 0.4, 0.1, 0.05), Vector(0.0, 1.5, 16.0), 2));
+	scene.addShape(new Plane(Material(Color(0.5, 0.5, 0.5), 0.08, 0.5, 0.1, 100, 0.7), Vector(0.0, 1.0, 0.0), -1.0));
+
+	// Lights
+	scene.addLight(new PointLight(Color(1.0, 1.0, 1.0), Vector(1, 4.8, 7)));
+	scene.addLight(new PointLight(Color(1.0, 1.0, 1.0), Vector(-1, 4.8, 7)));
+	scene.addLight(new AmbientLight(Color(0.2, 0.2, 0.2)));
+	
+	Raytracer raytracer(scene);
+
+	Image image(800, 600);
+	
+	std::cout << "@ Start rendering scene" << std::endl;
+	raytracer.render(image);
+	std::cout << "@ Finished rendering" << std::endl;
+	TGA tga(filename);
+	tga.output(image);
+}
+
+void testRender3(const std::string filename) {
+	
+	Color background(0,0,0);
+	Scene scene(background);
+
+	std::cout << "@ Creating scene" << std::endl;
+
+	scene.addShape(new Sphere(Material(Color(0.2, 0.6, 0.8), 0.2, 0.8, 0.4, 0.1, 0.05), Vector(0.1, 1.5, 16.0), 2));
+	
+	scene.addShape(new Plane(Material(Color(0.5, 0.5, 0.5), 0.08, 0.5, 0.1, 100, 0.7), Vector(0.0, 1.0, 0.0), -1.0));
+
+	// Lights
+	scene.addLight(new PointLight(Color(1.0, 1.0, 1.0), Vector(2, 4.8, 7)));
+	scene.addLight(new PointLight(Color(1.0, 1.0, 1.0), Vector(-2, 4.8, 7)));
+	scene.addLight(new AmbientLight(Color(0.2, 0.2, 0.2)));
+	
+	Raytracer raytracer(scene);
+
+	Image image(800, 600);
+	
+	std::cout << "@ Start rendering scene" << std::endl;
+	raytracer.render(image);
+	std::cout << "@ Finished rendering" << std::endl;
+	TGA tga(filename);
+	tga.output(image);
+}
+
+void testRenderScreen() {
+	OpenGLCanvas canvas(800,600);
+	canvas.setColor(100,100, Color(1.0, 0, 0));
 }
 
 void testcamera() {
@@ -101,7 +166,10 @@ void testmatrix() {
 
 int main() 
 {
-	testRender("hello.tga");	
+	std::cout << "Avantime Ray Tracer version 0.0.4" << std::endl;
+	std::cout << "Copyright 2011-2012 Johan Astborg" << std::endl;
+	testRender1("hello.tga");
+	//testRenderScreen();
 	//testcamera();
 }
 
