@@ -197,14 +197,18 @@ void testmatrix() {
 	std::cout << m(0,0) << std::endl;
 	n.identity();
 	std::cout << m * n << std::endl;
+	n.inverse();
+	std::cout << n.inverse() << std::endl;
+	std::cout << n << std::endl;
 }
 
 int main() 
 {
 	std::cout << "Avantime Ray Tracer version 0.0.4" << std::endl;
 	std::cout << "Copyright 2011-2012 Johan Astborg" << std::endl;
+	testmatrix();
 	//testRender1("hello.tga");
-	testRender2("hello.tga");
+	//testRender2("hello.tga");
 	//testRenderScreen();
 	//testcamera();
 	//testtriangle();

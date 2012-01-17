@@ -21,12 +21,14 @@
 
 #include <iostream>
 
+#include "vector.h"
+
 class Matrix {
 public:
 	Matrix(); // Empty constructor sets all elements to 0
 
 	void identity(); // set elements to identity matrix
-	Matrix inverse();
+	bool inverse();
 	void zero(); // zero out matrix
 	double getXY(int x, int y);
 	void setXY(int x, int y, double value);
@@ -36,6 +38,8 @@ public:
 	// overloaded operators +, -, *, /, (x,y)
 	// matrix * vector
 	// matrix * scalar
+	
+	Vector transform(Vector& v);
 
 	friend Matrix operator+(const Matrix& lhs, const Matrix& rhs);
 	friend Matrix operator-(const Matrix& lhs, const Matrix& rhs);
