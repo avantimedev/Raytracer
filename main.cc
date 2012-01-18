@@ -54,7 +54,7 @@ void testRender1(const std::string filename) {
 	
 	Raytracer raytracer(scene);
 
-	Image image(1920, 1200);
+	Image image(1024, 768);
 	
 	std::cout << "@ Start rendering scene 1" << std::endl;
 	raytracer.render(image);
@@ -186,6 +186,53 @@ void testcamera() {
 	std::cout << "y: " << y << std::endl;
 }
 
+void testcamera2() {
+
+		Vector lookFrom(0,0,-5);
+		Vector lookAt(0,2,5);
+		
+		int width = 1024;
+		int height = 768;
+
+		// Image plane corners
+		Vector p1 = Vector(-1,1,0); // Upper left
+		Vector p2 = Vector(1,1,0); // Upper right
+		Vector p3 = Vector(1,-1,0); // Lower right
+		Vector p4 = Vector(-1,-1,0); // Lower left
+
+		// Calc camera direction vector
+		Vector zdir = (lookAt - lookFrom).normalize();
+		
+		// Camera lookup (y-axis)
+		Vector up = Vector(1,1,0);
+
+		// Create camera view system basis
+		Vector xaxis = up ^ zdir; // (cross)
+		Vector yaxis = xaxis ^ -zdir; // (cross)
+		Vector zaxis = (xaxis ^ yaxis).normalize();
+
+		std::cout << "xaxis: " << xaxis << std::endl;
+		std::cout << "yaxis: " << yaxis << std::endl;
+		std::cout << "zaxis: " << zaxis << std::endl;
+
+		// move camera
+		// ...
+
+		// Calculate interpolation vectors
+		Vector dx = (p2 - p1) * (1.0 / width);
+		Vector dy = (p4 - p1) * (1.0 / height);
+
+		std::cout << "dx: " << dx << std::endl;
+		std::cout << "dy: " << dy << std::endl;
+
+		double u = 0;
+		double v = 768;
+
+		Vector tdir = p1 + dx * u + dy * v;
+		Ray ray(lookFrom, tdir);
+		std::cout << "ray: " << ray << std::endl;
+}
+
 void testtriangle() {
 	//Triangle
 }
@@ -199,8 +246,10 @@ void testmatrix() {
 	std::cout << m(0,0) << std::endl;
 	n.identity();
 	std::cout << m * n << std::endl;
-	n.inverse();
-	std::cout << n.inverse() << std::endl;
+	n.invert();
+	std::cout << n.invert() << std::endl;
+	std::cout << n << std::endl;
+	n.transpose();
 	std::cout << n << std::endl;
 }
 
@@ -208,8 +257,9 @@ int main()
 {
 	std::cout << "Avantime Ray Tracer version 0.0.4" << std::endl;
 	std::cout << "Copyright 2011-2012 Johan Astborg" << std::endl;
-	testmatrix();
-	//testRender1("hello.tga");
+	//testmatrix();
+	testRender1("hello.tga");
+	//testcamera2();
 	//testRender2("hello.tga");
 	//testRenderScreen();
 	//testcamera();

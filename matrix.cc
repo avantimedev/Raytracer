@@ -30,9 +30,9 @@ void Matrix::identity() {
 	elems[15] = 1;
 }
 
-bool Matrix::inverse() {
+bool Matrix::invert() {
 	// Reference: MESA implementation
-	
+
 	double inv[16], det;
 	int i;
 
@@ -79,6 +79,21 @@ bool Matrix::inverse() {
 	        elems[i] = inv[i] * det;
 
 	return true;
+}
+
+void Matrix::transpose() {
+	elems[1] = elems[4];
+	elems[2] = elems[8];
+	elems[3] = elems[12];
+	elems[4] = elems[1];
+	elems[6] = elems[9];
+	elems[7] = elems[13];
+	elems[8] = elems[2];
+	elems[9] = elems[6];
+	elems[11] = elems[14];
+	elems[12] = elems[3];
+	elems[13] = elems[7];
+	elems[14] = elems[11];
 }
 
 Vector Matrix::transform(Vector& v) {

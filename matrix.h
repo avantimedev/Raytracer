@@ -28,7 +28,8 @@ public:
 	Matrix(); // Empty constructor sets all elements to 0
 
 	void identity(); // set elements to identity matrix
-	bool inverse();
+	bool invert();
+	void transpose();
 	void zero(); // zero out matrix
 	double getXY(int x, int y);
 	void setXY(int x, int y, double value);
@@ -53,9 +54,9 @@ public:
 	// determinant?
 
 	friend std::ostream &operator<<(std::ostream& out, const Matrix& matrix);
-
+double elems[16]; // or row major order
 private:
-	double elems[16]; // or row major order
+	
 };
 
 #endif
