@@ -28,8 +28,9 @@
 #include "plane.h"
 #include "triangle.h"
 #include "matrix.h"
+#ifdef __APPLE__
 #include "openglcanvas.h"
-
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <cmath>
@@ -145,11 +146,12 @@ void testRender4(const std::string filename) {
 	TGA tga(filename);
 	tga.output(image);
 }
-
+#ifdef __APPLE__
 void testRenderScreen() {
 	OpenGLCanvas canvas(800,600);
 	canvas.setColor(100,100, Color(1.0, 0, 0));
 }
+#endif
 
 void testcamera() {
 	Vector lookFrom(0,0,0);

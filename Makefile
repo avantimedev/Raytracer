@@ -2,13 +2,19 @@
 CXXFLAGS  = -pipe -O2 -Wall -W -ansi -pedantic-errors
 CXXFLAGS += -Wmissing-braces -Wparentheses -Wold-style-cast
 
+UNAME := $(shell uname)
+
 # Define what to do when make is executed without arguments.
 all: raytracer
+
+ifeq ($(UNAME), Mac)
+GLFLAGS = -framework Carbon -framework OpenGL -framework GLUT
+endif
 
 # The following rule means "if ltest is older than ltest.o or list.o,
 # then link ltest".
 raytracer: color.o image.o light.o main.o material.o point.o ray.o scene.o sphere.o vector.o surface.o raytracer.o plane.o triangle.o matrix.o tga.o openglcanvas.o camera.o 
-	g++ -o raytracer color.o image.o light.o main.o material.o point.o ray.o scene.o sphere.o vector.o surface.o raytracer.o plane.o triangle.o matrix.o tga.o openglcanvas.o camera.o -framework Carbon -framework OpenGL -framework GLUT
+	g++ -o raytracer color.o image.o light.o main.o material.o point.o ray.o scene.o sphere.o vector.o surface.o raytracer.o plane.o triangle.o matrix.o tga.o openglcanvas.o camera.o $(GLFLAGS)
 
 # Define the rules for the object files.
 color.o: color.cc color.h

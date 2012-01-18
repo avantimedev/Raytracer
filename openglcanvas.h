@@ -1,3 +1,5 @@
+#ifdef __APPLE__
+
 #ifndef OPENGLCANVAS_H
 #define OPENGLCANVAS_H
 
@@ -41,5 +43,7 @@ public:
 private:
 	
 };
+
+#endif
 
 #endif

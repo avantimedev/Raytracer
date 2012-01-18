@@ -43,7 +43,7 @@ public:
 			x = (x - floor(x / 1.0) * 1.0);
 		  	y = (y - floor(y / 1.0) * 1.0);
 			
-			if (x < 0.5 && y < 0.5 || x > 0.5 && y > 0.5) return Color(0,0,0);
+			if ((x < 0.5 && y < 0.5) || (x > 0.5 && y > 0.5)) return Color(0,0,0);
 			return Color(1.0, 1.0, 1.0);
 		} else if (n == 101) {
 			double x = point.getX();
@@ -52,7 +52,7 @@ public:
 			x = (x - floor(x / 1.0) * 1.0);
 		  	y = (y - floor(y / 1.0) * 1.0);
 
-			if (x < 0.5 && y < 0.5 || x > 0.5 && y > 0.5) return Color(0.9,0,0);
+			if ((x < 0.5 && y < 0.5) || (x > 0.5 && y > 0.5)) return Color(0.9,0,0);
 			return Color(0.0, 0.0, 0.9);
 }
 		return color;

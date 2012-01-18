@@ -1,3 +1,4 @@
+#ifdef __APPLE__
 #include "openglcanvas.h"
 
 GLubyte checkImage[600][800][4];
@@ -86,4 +87,4 @@ void OpenGLCanvas::setColor(unsigned int x, unsigned int y, const Color &color) 
 				checkImage[y][x][3] = 255;
 			}
 }
-	
+#endif	
